@@ -1,12 +1,14 @@
 {
  "site": {
   "hero": "srbija-zrenjanin-01",
-  "taglineSr": "Moja perspektiva mesta koje sam videla",
-  "taglineEn": "Photographs of places that meant something to me",
-  "aboutSr": "Zovem se Katarina i fotografija je moj način da sačuvam trenutke, ljude i mesta koja me inspirišu.\n\n[Ovde napiši par rečenica o sebi — šta voliš da fotografišeš, čime fotografišeš, kuda bi volela da odeš sledeće.]",
-  "aboutEn": "My name is Katarina and photography is my way of keeping the moments, people and places that inspire me.\n\n[Write a few sentences about yourself here — what you love to photograph, what you shoot with, where you would like to go next.]",
+  "taglineSr": "Svet kroz moj objektiv",
+  "taglineEn": "The world through my lens",
+  "aboutSr": "Zovem se Katarina i fotografija je moj hobi još od osnovne škole. Na nekim putovanjima volim da uživam u trenutku, bez fotografisanja, a na nekima volim da gledam svet kroz objektiv. Ovde čuvam te kadrove.\n\nOvo je pogled na život iz moje perspektive.",
+  "aboutEn": "My name is Katarina, and photography has been my hobby since primary school. On some trips I like to simply enjoy the moment, without taking photos — and on others, I like to see the world through the lens. This is where I keep those frames.\n\nThis is life as I see it.",
   "email": "kacakomatina125@gmail.com",
-  "instagram": "coka_photography"
+  "instagram": "coka_photography",
+  "heroSmall": "madjarska-budimpesta-10",
+  "aboutPhoto": "img/o-meni.jpg?v=1792602058382"
  },
  "countries": [
   {

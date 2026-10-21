@@ -51,6 +51,7 @@ import { CountryList } from '../shared/country-list';
     }
     .mp {
       position: relative;
+      min-width: 0;
       padding: 16px;
     }
     .t1 {
@@ -75,7 +76,7 @@ import { CountryList } from '../shared/country-list';
     }
     @media (max-width: 1100px) {
       .grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
       .side {
         max-width: 520px;

@@ -80,6 +80,7 @@ import { I18n } from '../core/i18n';
   styleUrl: './world-map.scss',
 })
 export class WorldMap {
+
   protected readonly data = inject(Data);
   private readonly i18n = inject(I18n);
 
