@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { Data } from './core/data';
@@ -18,6 +18,13 @@ export class App {
   protected readonly menuOpen = signal(false);
   protected readonly isAdmin = signal(false);
   protected readonly year = new Date().getFullYear();
+
+  /** ista rečenica kao ispod imena na početnoj (menja se u adminu) */
+  protected readonly tagline = computed(() => {
+    const s = this.data.site();
+    if (!s) return '';
+    return this.i18n.lang() === 'sr' ? s.taglineSr : s.taglineEn || s.taglineSr;
+  });
 
   constructor() {
     this.data.load();
