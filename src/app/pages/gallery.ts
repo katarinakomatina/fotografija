@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Data } from '../core/data';
 import { I18n } from '../core/i18n';
 import { Justified } from '../shared/justified';
+import { PlaceChips } from '../shared/place-chips';
 import { LightboxService } from '../shared/lightbox';
 
 const PAGE = 32;
@@ -10,7 +11,7 @@ const PAGE = 32;
 @Component({
   selector: 'app-gallery',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Justified],
+  imports: [Justified, PlaceChips],
   template: `
     <section class="wrap head">
       <img class="deco g-branch" src="img/ukrasi/linija-list.webp" alt="" />
@@ -37,6 +38,9 @@ const PAGE = 32;
     </section>
 
     <section class="wrap">
+      @if (current()) {
+        <app-place-chips class="pchips" [photos]="countryPhotos()" [selected]="place()" (pick)="place.set($event)" />
+      }
       <app-justified [photos]="shown()" (open)="open($event)" />
       @if (shown().length < list().length) {
         <div class="more">
@@ -153,6 +157,10 @@ const PAGE = 32;
       margin-top: 22px;
       font-size: 11px;
     }
+    .pchips {
+      display: block;
+      margin-bottom: 26px;
+    }
     .more {
       display: flex;
       justify-content: center;
@@ -184,7 +192,8 @@ export class Gallery {
   readonly current = computed(() => this.drzava() ?? '');
   readonly country = computed(() => this.data.country(this.current()));
 
-  readonly limit = linkedSignal({ source: this.current, computation: () => PAGE });
+  readonly place = linkedSignal({ source: this.current, computation: () => '' });
+  readonly limit = linkedSignal({ source: () => this.current() + '|' + this.place(), computation: () => PAGE });
 
   readonly chips = computed(() => {
     const counts = this.data.countByCountry();
@@ -194,9 +203,15 @@ export class Gallery {
       .filter((c) => c.count > 0);
   });
 
-  readonly list = computed(() => {
+  readonly countryPhotos = computed(() => {
     const c = this.current();
-    return c ? this.data.photosOf(c) : this.data.photos();
+    return c ? this.data.photosOf(c) : [];
+  });
+
+  readonly list = computed(() => {
+    if (!this.current()) return this.data.photos();
+    const pl = this.place();
+    return pl ? this.countryPhotos().filter((p) => p.place.sr === pl) : this.countryPhotos();
   });
 
   readonly shown = computed(() => this.list().slice(0, this.limit()));

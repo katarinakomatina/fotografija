@@ -70,7 +70,9 @@ export class LightboxService {
             <a class="ctry" [routerLink]="['/drzava', c.id]" (click)="lb.close()">
               <span class="flag fi fi-{{ c.iso }}"></span>{{ i18n.pick(c.name) }}
             </a>
-            <p class="desc">{{ i18n.pick(c.desc) }}</p>
+            @if (i18n.pick(c.desc)) {
+              <p class="desc">{{ i18n.pick(c.desc) }}</p>
+            }
             <a class="more" [routerLink]="['/drzava', c.id]" (click)="lb.close()"
               >{{ i18n.t('seeAllFrom') }} {{ i18n.pick(c.name) }} <span class="arrow">→</span></a
             >

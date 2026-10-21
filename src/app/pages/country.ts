@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { Data } from '../core/data';
 import { I18n } from '../core/i18n';
 import { Justified } from '../shared/justified';
+import { PlaceChips } from '../shared/place-chips';
 import { LightboxService } from '../shared/lightbox';
 
 const PAGE = 32;
@@ -10,7 +11,7 @@ const PAGE = 32;
 @Component({
   selector: 'app-country',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, Justified],
+  imports: [RouterLink, Justified, PlaceChips],
   template: `
     @if (country(); as c) {
       <section class="wrap head">
@@ -20,12 +21,9 @@ const PAGE = 32;
         <div class="head-grid">
           <div class="txt">
             <h1>{{ i18n.pick(c.name) }} <span class="flag fi fi-{{ c.iso }}"></span></h1>
-            <p class="lead">{{ i18n.pick(c.desc) }}</p>
-            <div class="places">
-              @for (pl of places(); track pl) {
-                <span class="hand">{{ pl }}</span>
-              }
-            </div>
+            @if (i18n.pick(c.desc)) {
+              <p class="lead">{{ i18n.pick(c.desc) }}</p>
+            }
             <div class="label cnt">{{ photos().length }} {{ i18n.t('photos') }}</div>
           </div>
           <div class="art">
@@ -42,11 +40,12 @@ const PAGE = 32;
       </section>
 
       <section class="wrap">
+        <app-place-chips class="pchips" [photos]="photos()" [selected]="place()" (pick)="place.set($event)" />
         <app-justified [photos]="shown()" (open)="open($event)" />
-        @if (shown().length < photos().length) {
+        @if (shown().length < filtered().length) {
           <div class="more">
             <button type="button" class="btn ghost" (click)="limit.set(limit() + 32)">
-              {{ i18n.t('showMore') }} ({{ photos().length - shown().length }})
+              {{ i18n.t('showMore') }} ({{ filtered().length - shown().length }})
             </button>
           </div>
         }
@@ -156,6 +155,10 @@ const PAGE = 32;
       z-index: 5;
       transform: rotate(-12deg);
     }
+    .pchips {
+      display: block;
+      margin: -20px 0 30px;
+    }
     .more {
       display: flex;
       justify-content: center;
@@ -225,22 +228,20 @@ export class CountryPage {
   readonly id = input.required<string>();
   readonly country = computed(() => this.data.country(this.id()));
   readonly photos = computed(() => this.data.photosOf(this.id()));
-  readonly limit = linkedSignal({ source: this.id, computation: () => PAGE });
-  readonly shown = computed(() => this.photos().slice(0, this.limit()));
+  /** izabrano mesto ('' = sva mesta); vraća se na sva kad se promeni država */
+  readonly place = linkedSignal({ source: this.id, computation: () => '' });
+  readonly filtered = computed(() => {
+    const pl = this.place();
+    return pl ? this.photos().filter((p) => p.place.sr === pl) : this.photos();
+  });
+  readonly limit = linkedSignal({ source: () => this.id() + '|' + this.place(), computation: () => PAGE });
+  readonly shown = computed(() => this.filtered().slice(0, this.limit()));
   readonly ills = computed(() => this.country()?.illustrations ?? []);
 
-  readonly places = computed(() => {
-    const seen = new Map<string, number>();
-    for (const p of this.photos()) {
-      const n = this.i18n.pick(p.place);
-      seen.set(n, (seen.get(n) ?? 0) + 1);
-    }
-    return [...seen.keys()];
-  });
 
   readonly others = computed(() => this.data.countries().filter((c) => c.id !== this.id()));
 
   open(i: number): void {
-    this.lb.open(this.photos(), i);
+    this.lb.open(this.filtered(), i);
   }
 }
