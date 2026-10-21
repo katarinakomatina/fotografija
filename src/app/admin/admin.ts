@@ -244,6 +244,11 @@ export class Admin {
     this.flash('info', 'Ovo je sada glavna fotografija na početnoj.');
   }
 
+  setHeroSmall(p: Photo): void {
+    this.updateSite({ heroSmall: p.id });
+    this.flash('info', 'Ovo je sada mala slika (polaroid) na početnoj.');
+  }
+
   setCover(p: Photo): void {
     this.updateCountry(p.country, { cover: p.id });
     this.flash('info', 'Ovo je sada slika države na mapi.');

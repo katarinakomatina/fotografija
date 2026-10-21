@@ -93,15 +93,18 @@ h1 span {
 
 /* fotografija */
 .hero-photo {
+  --hh: min(calc(100vh - var(--header-h) - 120px), 720px);
   position: relative;
   justify-self: end;
-  width: min(100%, 560px);
+  width: fit-content;
+  max-width: 100%;
   padding: 0 0 40px 30px;
 }
 
+/* velika slika: originalni oblik, cela staje u prozor */
 .hero-img {
   display: block;
-  width: 100%;
+  width: min(100%, calc(var(--hh) * var(--ar, 0.8)), 760px);
   padding: 0;
   border: 0;
   cursor: zoom-in;
@@ -182,7 +185,7 @@ h1 span {
   left: -40px;
   bottom: 0;
   z-index: 4;
-  width: 170px;
+  width: clamp(130px, calc(170px * var(--ar, 1)), 250px);
   padding: 8px 8px 30px;
   border: 0;
   background: #fbf7ee;
@@ -255,6 +258,49 @@ h1 span {
 
 .reel {
   align-items: center;
+}
+
+.reel-nav {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+  align-self: center;
+}
+
+.rn {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper-light);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.rn:hover {
+  background: var(--ink);
+  color: var(--paper-light);
+  transform: scale(1.06);
+}
+
+.rn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 700px) {
+  .reel-nav {
+    display: none;
+  }
 }
 
 .reel-item {
@@ -439,8 +485,14 @@ h1 span {
     mask: url('/img/torn-bottom.svg') 0 0 / 100% 100% no-repeat;
   }
 
-  .hero-img app-photo {
-    aspect-ratio: 4 / 4.4 !important;
+  .hero-photo {
+    --hh: 72vh;
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .hero-img {
+    margin: 0 auto;
   }
 
   .hero-cap {

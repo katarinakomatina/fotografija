@@ -109,7 +109,10 @@
                   <span class="star" title="Izdvojeno">★</span>
                 }
                 @if (site()?.hero === p.id) {
-                  <span class="star" title="Naslovna">⌂</span>
+                  <span class="star" title="Velika slika na početnoj">⌂</span>
+                }
+                @if (site()?.heroSmall === p.id) {
+                  <span class="star" title="Mala slika na početnoj">▫</span>
                 }
               </div>
               <div class="cell-ph" *cdkDragPlaceholder></div>
@@ -187,7 +190,8 @@
             Izdvojeno na početnoj
           </label>
           <div class="row">
-            <button type="button" [class.on]="site()?.hero === p.id" (click)="setHero(p)">⌂ Glavna slika na početnoj</button>
+            <button type="button" [class.on]="site()?.hero === p.id" (click)="setHero(p)">⌂ Velika slika na početnoj</button>
+            <button type="button" [class.on]="site()?.heroSmall === p.id" (click)="setHeroSmall(p)">▫ Mala slika (polaroid) na početnoj</button>
             <button type="button" [class.on]="isCover(p)" (click)="setCover(p)">Slika države na mapi</button>
           </div>
 

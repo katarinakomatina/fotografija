@@ -21,8 +21,8 @@
 
     <div class="hero-photo">
       @if (hero(); as h) {
-        <button type="button" class="hero-img torn-left" (click)="openHero()" [attr.aria-label]="i18n.pick(h.place)">
-          <app-photo [photo]="h" size="full" ratio="4 / 5" [eager]="true" [alt]="i18n.pick(h.place)" />
+        <button type="button" class="hero-img torn-left" [style.--ar]="h.w / h.h" (click)="openHero()" [attr.aria-label]="i18n.pick(h.place)">
+          <app-photo [photo]="h" size="full" [ratio]="h.w + ' / ' + h.h" [eager]="true" [alt]="i18n.pick(h.place)" />
         </button>
       }
       <img class="deco h-stamp" src="img/ukrasi/pecat.webp" alt="" />
@@ -31,9 +31,9 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" /></svg>
       </a>
       @if (small(); as s) {
-        <button type="button" class="mini" (click)="openFeatured(featured().indexOf(s))" [attr.aria-label]="i18n.pick(s.place)">
+        <button type="button" class="mini" [style.--ar]="s.w / s.h" (click)="openSmall()" [attr.aria-label]="i18n.pick(s.place)">
           <span class="tape"></span>
-          <app-photo [photo]="s" ratio="1 / 1" />
+          <app-photo [photo]="s" [ratio]="s.w + ' / ' + s.h" />
         </button>
       }
     </div>
@@ -60,8 +60,16 @@
   <div class="wrap section-title">
     <h2>{{ i18n.t('featured') }}</h2>
     <p class="lead">{{ i18n.t('featuredSub') }}</p>
+    <div class="reel-nav">
+      <button type="button" class="rn" (click)="scrollReel(reel, -1)" [attr.aria-label]="i18n.t('prev')">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" /></svg>
+      </button>
+      <button type="button" class="rn" (click)="scrollReel(reel, 1)" [attr.aria-label]="i18n.t('next')">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" /></svg>
+      </button>
+    </div>
   </div>
-  <div class="reel">
+  <div class="reel" #reel>
     @for (p of featured(); track p.id; let i = $index) {
       <button type="button" class="reel-item" [style.--ar]="p.w / p.h" [style.--tilt.deg]="p.tilt" (click)="openFeatured(i)" [attr.aria-label]="i18n.pick(p.place)">
         <app-photo [photo]="p" [ratio]="p.w + ' / ' + p.h" [alt]="i18n.pick(p.place)" />

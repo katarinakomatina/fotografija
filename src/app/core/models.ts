@@ -40,6 +40,7 @@ export interface Country {
 
 export interface SiteText {
   hero: string;
+  heroSmall?: string; // mala slika (polaroid) na početnoj
   taglineSr: string;
   taglineEn: string;
   aboutSr: string;

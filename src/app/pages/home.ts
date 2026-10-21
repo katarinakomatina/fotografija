@@ -30,7 +30,12 @@ export class Home {
   });
 
   /** mala polaroid slika u uglu naslovne */
-  readonly small = computed(() => this.featured().find((p) => p.id !== this.hero()?.id));
+  /** mala slika (polaroid) — bira se u adminu; ako nije izabrana, prva izdvojena */
+  readonly small = computed(() => {
+    const id = this.data.site()?.heroSmall;
+    const chosen = id ? this.data.photoById().get(id) : undefined;
+    return chosen ?? this.featured().find((p) => p.id !== this.hero()?.id);
+  });
 
   readonly tagline = computed(() => {
     const s = this.data.site();
@@ -60,6 +65,16 @@ export class Home {
 
   openFeatured(i: number): void {
     this.lb.open(this.featured(), i);
+  }
+
+  /** strelice za listanje izdvojenih slika */
+  scrollReel(el: HTMLElement, dir: 1 | -1): void {
+    el.scrollBy({ left: dir * el.clientWidth * 0.7, behavior: 'smooth' });
+  }
+
+  openSmall(): void {
+    const s = this.small();
+    if (s) this.lb.open([s, ...this.featured().filter((p) => p.id !== s.id)], 0);
   }
 
   openHero(): void {
