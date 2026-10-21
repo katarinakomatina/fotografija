@@ -1,0 +1,66 @@
+@if (!isAdmin()) {
+  <header class="top">
+    <div class="wrap bar">
+      <a routerLink="/" class="logo" (click)="menuOpen.set(false)">
+        <span class="nm">Katarina Komatina</span>
+        <span class="label">{{ i18n.t('photography') }}</span>
+      </a>
+
+      <nav class="nav" [class.open]="menuOpen()" [attr.aria-label]="i18n.t('menu')">
+        <a routerLink="/" routerLinkActive="on" [routerLinkActiveOptions]="{ exact: true }">{{ i18n.t('navHome') }}</a>
+        <a routerLink="/fotografije" routerLinkActive="on">{{ i18n.t('navPhotos') }}</a>
+        <a routerLink="/mapa" routerLinkActive="on">{{ i18n.t('navMap') }}</a>
+        <a routerLink="/o-meni" routerLinkActive="on">{{ i18n.t('navAbout') }}</a>
+        <img class="menu-deco" src="img/ukrasi/linija-lavanda.webp" alt="" />
+      </nav>
+
+      <div class="lang" role="group" aria-label="Jezik / Language">
+        <button type="button" [class.on]="i18n.lang() === 'sr'" (click)="setLang('sr')" [attr.aria-pressed]="i18n.lang() === 'sr'">SR</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" [class.on]="i18n.lang() === 'en'" (click)="setLang('en')" [attr.aria-pressed]="i18n.lang() === 'en'">EN</button>
+      </div>
+
+      <button type="button" class="burger" [class.open]="menuOpen()" (click)="menuOpen.set(!menuOpen())" [attr.aria-expanded]="menuOpen()" [attr.aria-label]="i18n.t('menu')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+}
+
+<main [class.admin]="isAdmin()">
+  @if (data.content()) {
+    <router-outlet />
+  } @else {
+    <div class="loading hand">…</div>
+  }
+</main>
+
+@if (!isAdmin()) {
+  <footer class="foot">
+    <div class="foot-paper torn-top">
+      <div class="wrap foot-in">
+        <div>
+          <div class="nm">Katarina Komatina</div>
+          <p class="hand line">{{ i18n.t('collecting') }}</p>
+        </div>
+        <div class="links">
+          <a routerLink="/fotografije">{{ i18n.t('navPhotos') }}</a>
+          <a routerLink="/mapa">{{ i18n.t('navMap') }}</a>
+          <a routerLink="/o-meni">{{ i18n.t('navAbout') }}</a>
+        </div>
+        <div class="contact">
+          @if (data.site()?.email; as email) {
+            <a [href]="'mailto:' + email">{{ email }}</a>
+          }
+          @if (data.site()?.instagram; as ig) {
+            <a [href]="'https://instagram.com/' + ig.replace('@', '')" target="_blank" rel="noopener">{{ '@' + ig.replace('@', '') }}</a>
+          }
+          <span class="label">© {{ year }} · {{ i18n.t('madeWith') }}</span>
+        </div>
+      </div>
+      <img class="foot-deco" src="img/ukrasi/linija-ruzmarin.webp" alt="" />
+    </div>
+  </footer>
+}
+
+<app-lightbox />

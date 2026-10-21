@@ -1,0 +1,239 @@
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  grid-template-rows: minmax(0, 1fr) 92px;
+  gap: 18px;
+  padding: 22px;
+  background: rgba(28, 22, 17, 0.94) url('/img/papir-tamni.jpg');
+  background-blend-mode: multiply;
+  color: var(--ink);
+  animation: fade 0.25s ease both;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.x {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--paper-light);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.stage {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  touch-action: pan-y;
+}
+
+.big {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 10px solid #fbf7ee;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  animation: fade 0.35s ease both;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  margin-top: -26px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(247, 240, 225, 0.92);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s;
+}
+
+.nav:hover {
+  transform: scale(1.08);
+}
+
+.prev {
+  left: 6px;
+}
+
+.next {
+  right: 6px;
+}
+
+.info {
+  position: relative;
+  align-self: center;
+  padding: 34px 30px 40px;
+  overflow: hidden;
+  transform: rotate(0.6deg);
+}
+
+.info h2 {
+  margin: 10px 0 14px;
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.ctry {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--type);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.desc {
+  margin-top: 18px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.more {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--ink);
+  font-family: var(--type);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.more:hover {
+  background: var(--ink);
+  color: var(--paper-light);
+}
+
+.deco-in {
+  position: absolute;
+  right: -14px;
+  bottom: -18px;
+  width: 120px;
+  opacity: 0.55;
+  transform: rotate(-20deg);
+  pointer-events: none;
+}
+
+.strip {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scrollbar-width: thin;
+}
+
+.th {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.th img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.th.on,
+.th:hover {
+  opacity: 1;
+}
+
+.th.on {
+  border-color: var(--paper-light);
+}
+
+@media (max-width: 900px) {
+  .lb {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto 70px;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .big {
+    border-width: 6px;
+  }
+
+  .info {
+    padding: 16px 18px 18px;
+    transform: none;
+  }
+
+  .info h2 {
+    margin: 4px 0 6px;
+    font-size: 28px;
+  }
+
+  .desc,
+  .more,
+  .deco-in {
+    display: none;
+  }
+
+  .nav {
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+  }
+
+  .th {
+    width: 56px;
+    height: 56px;
+  }
+
+  .x {
+    top: 8px;
+    right: 8px;
+  }
+}

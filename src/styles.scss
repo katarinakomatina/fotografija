@@ -1,0 +1,309 @@
+/* =========================================================
+   Globalni stilovi — "putni dnevnik" (papir, polaroidi, pečati)
+   ========================================================= */
+
+:root {
+  --paper: #efe4cd;
+  --paper-light: #f7f0e1;
+  --paper-dark: #e2d3b4;
+  --kraft: #cdb48a;
+  --ink: #2d241c;
+  --ink-soft: #5c4d3e;
+  --muted: #7a6a58;
+  --rust: #9c4a2c;
+  --rust-dark: #7e3920;
+  --sea: #a9bdb4;
+  --land: #e6d9be;
+  --land-mine: #c9ad7f;
+  --shadow: 0 10px 24px rgba(45, 36, 28, 0.18), 0 2px 4px rgba(45, 36, 28, 0.12);
+  --shadow-sm: 0 4px 10px rgba(45, 36, 28, 0.16);
+
+  --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --hand: 'Caveat', 'Segoe Print', cursive;
+  --type: 'Courier Prime', 'Courier New', monospace;
+  --sans: 'Jost', 'Segoe UI', system-ui, sans-serif;
+
+  --wrap: 1280px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --header-h: 76px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: url('/img/papir.jpg');
+  background-size: 768px 768px;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* blaga vinjeta preko celog sajta, kao stari papir */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(120, 90, 50, 0.16) 100%);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.05;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px dashed var(--rust);
+  outline-offset: 3px;
+}
+
+.wrap {
+  position: relative;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* --- tipografija --- */
+.hand {
+  font-family: var(--hand);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.label {
+  font-family: var(--type);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* --- dugmad --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 0;
+  background: var(--ink);
+  color: var(--paper-light);
+  font-family: var(--type);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.25s,
+    background 0.25s;
+}
+
+.btn:hover {
+  background: var(--rust-dark);
+  transform: translateY(-2px);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: none;
+}
+
+.btn.ghost:hover {
+  background: var(--ink);
+  color: var(--paper-light);
+}
+
+.arrow {
+  transition: transform 0.25s;
+}
+
+.btn:hover .arrow,
+a:hover > .arrow {
+  transform: translateX(4px);
+}
+
+/* --- papirni elementi --- */
+.paper-card {
+  background: var(--paper-light) url('/img/papir.jpg');
+  background-blend-mode: multiply;
+  box-shadow: var(--shadow);
+}
+
+.torn-top {
+  mask: url('/img/torn-top.svg') 0 0 / 100% 100% no-repeat;
+  -webkit-mask: url('/img/torn-top.svg') 0 0 / 100% 100% no-repeat;
+}
+
+.torn-bottom {
+  mask: url('/img/torn-bottom.svg') 0 0 / 100% 100% no-repeat;
+  -webkit-mask: url('/img/torn-bottom.svg') 0 0 / 100% 100% no-repeat;
+}
+
+.torn-left {
+  mask: url('/img/torn-left.svg') 0 0 / 100% 100% no-repeat;
+  -webkit-mask: url('/img/torn-left.svg') 0 0 / 100% 100% no-repeat;
+}
+
+.torn-right {
+  mask: url('/img/torn-right.svg') 0 0 / 100% 100% no-repeat;
+  -webkit-mask: url('/img/torn-right.svg') 0 0 / 100% 100% no-repeat;
+}
+
+/* lepljiva traka preko ivice */
+.tape {
+  position: absolute;
+  width: 120px;
+  height: 34px;
+  background: url('/img/ukrasi/traka.webp') center / 100% 100% no-repeat;
+  opacity: 0.92;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.tape.green {
+  background-image: url('/img/ukrasi/traka-zelena.webp');
+}
+
+/* ukrasi (pečati, grančice...) */
+.deco {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+
+/* zastave — biblioteka flag-icons */
+.flag {
+  display: inline-block;
+  width: 1.4em;
+  height: 1.05em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(45, 36, 28, 0.25);
+  vertical-align: -0.12em;
+  background-size: cover;
+}
+
+/* naslov sekcije */
+.section-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 20px;
+}
+
+.section-title h2 {
+  font-family: var(--hand);
+  font-weight: 600;
+  font-size: clamp(42px, 6vw, 64px);
+  line-height: 1;
+}
+
+/* mreža polaroida */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 2.4vw, 30px);
+}
+
+@media (max-width: 1100px) {
+  .photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 10px;
+  }
+
+  :root {
+    --header-h: 64px;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* animacija ulaska */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

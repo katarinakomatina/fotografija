@@ -1,0 +1,6 @@
+{
+  "/api": { "target": "http://localhost:4300", "secure": false },
+  "/photos": { "target": "http://localhost:4300", "secure": false },
+  "/data": { "target": "http://localhost:4300", "secure": false },
+  "/img/o-meni.jpg": { "target": "http://localhost:4300", "secure": false }
+}

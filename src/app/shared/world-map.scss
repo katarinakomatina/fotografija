@@ -1,0 +1,186 @@
+:host {
+  display: block;
+}
+
+.map {
+  position: relative;
+  width: 100%;
+}
+
+.geo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sea {
+  fill: rgba(169, 189, 180, 0.42);
+}
+
+.land {
+  fill: rgba(236, 225, 200, 0.92);
+  stroke: rgba(92, 77, 62, 0.35);
+  stroke-width: 0.7;
+}
+
+.mine {
+  fill: var(--land-mine);
+  stroke: rgba(92, 70, 45, 0.7);
+  stroke-width: 1;
+  transition: fill 0.3s;
+}
+
+.mine.hot {
+  fill: #b98b5a;
+}
+
+.line {
+  fill: none;
+  stroke: var(--rust);
+  stroke-width: 1.6;
+  stroke-dasharray: 5 5;
+  opacity: 0.55;
+  transition: opacity 0.3s;
+}
+
+.line.hot {
+  opacity: 1;
+}
+
+/* pin */
+.pin {
+  position: absolute;
+  z-index: 4;
+  width: 26px;
+  height: 34px;
+  margin: -32px 0 0 -13px;
+  text-decoration: none;
+}
+
+.pin svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+  transition: transform 0.25s;
+  transform-origin: 50% 100%;
+}
+
+.pin path {
+  fill: var(--rust);
+}
+
+.pin circle {
+  fill: var(--paper-light);
+}
+
+.pin:hover svg,
+.pin:focus-visible svg {
+  transform: scale(1.2);
+}
+
+.tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  white-space: nowrap;
+  font-family: var(--hand);
+  font-size: 22px;
+  line-height: 1;
+  background: var(--paper-light);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+  pointer-events: none;
+}
+
+.pin:hover .tip,
+.pin:focus-visible .tip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* polaroid na mapi */
+.card {
+  position: absolute;
+  z-index: 3;
+  width: 11.5%;
+  padding: 5px 5px 0;
+  background: #fbf7ee;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.card .name {
+  display: block;
+  padding: 3px 0 5px;
+  text-align: center;
+  font-size: clamp(14px, 1.6vw, 22px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card .tape {
+  width: 56%;
+  height: 16%;
+  left: 22%;
+  top: -7%;
+  transform: rotate(-4deg);
+}
+
+.card:hover,
+.card.hot {
+  z-index: 6;
+  transform: translate(-50%, -54%) rotate(0deg) scale(1.12);
+  box-shadow: 0 18px 34px rgba(45, 36, 28, 0.3);
+}
+
+.compass {
+  left: 1%;
+  bottom: 2%;
+  width: 13%;
+  opacity: 0.9;
+}
+
+@media (max-width: 700px) {
+  .card {
+    display: none;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .pin {
+    width: 20px;
+    height: 27px;
+    margin: -25px 0 0 -10px;
+  }
+
+  .tip {
+    font-size: 18px;
+  }
+
+  .compass {
+    width: 18%;
+  }
+}

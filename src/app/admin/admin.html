@@ -1,0 +1,323 @@
+<div class="adm">
+  <!-- ======= gornja traka ======= -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="nm">Katarina Komatina</span>
+      <span class="tag">ADMIN · samo na tvom računaru</span>
+    </div>
+    <nav class="tabs">
+      <button type="button" [class.on]="tab() === 'photos'" (click)="tab.set('photos')">Fotografije ({{ photos().length }})</button>
+      <button type="button" [class.on]="tab() === 'countries'" (click)="tab.set('countries')">Države ({{ countries().length }})</button>
+      <button type="button" [class.on]="tab() === 'texts'" (click)="tab.set('texts')">Tekstovi i naslovna</button>
+    </nav>
+    <div class="actions">
+      <a routerLink="/" target="_blank" class="ghost">Otvori sajt ↗</a>
+      @if (dirty()) {
+        <span class="dirty">● Nesačuvano</span>
+        <button type="button" class="ghost" (click)="discard()">Poništi</button>
+      }
+      <button type="button" class="save" [disabled]="!dirty() || busy() || serverDown()" (click)="save()">
+        {{ busy() ? '…' : 'Sačuvaj' }} <small>Ctrl+S</small>
+      </button>
+    </div>
+  </header>
+
+  @if (serverDown()) {
+    <div class="banner err">
+      Admin server nije pokrenut, pa izmene ne mogu da se sačuvaju. Zatvori ovo, pa u terminalu u VS Code-u pokreni
+      <code>npm run admin</code> i otvori <code>http://localhost:4200/admin</code>.
+    </div>
+  }
+  @if (status(); as s) {
+    <div class="banner" [class]="s.kind">{{ s.text }}</div>
+  }
+
+  <!-- ======================= FOTOGRAFIJE ======================= -->
+  @if (tab() === 'photos') {
+    <div class="layout">
+      <!-- levo: filter + dodavanje -->
+      <aside class="side">
+        <h3>Prikaži</h3>
+        <button type="button" class="ctry" [class.on]="!filter()" (click)="filter.set('')">
+          Sve države <span>{{ photos().length }}</span>
+        </button>
+        @for (c of countries(); track c.id) {
+          <button type="button" class="ctry" [class.on]="filter() === c.id" (click)="filter.set(c.id)">
+            <span class="flag fi fi-{{ c.iso }}"></span> {{ c.name.sr }} <span>{{ counts().get(c.id) ?? 0 }}</span>
+          </button>
+        }
+
+        <div class="upload">
+          <h3>Dodaj fotografije</h3>
+          <label>
+            Država
+            <select [value]="upCountry()" (change)="upCountry.set(val($event))">
+              @for (c of countries(); track c.id) {
+                <option [value]="c.id" [selected]="c.id === upCountry()">{{ c.name.sr }}</option>
+              }
+            </select>
+          </label>
+          <label>
+            Mesto (srpski)
+            <input list="places-dl" [value]="upPlaceSr()" (input)="upPlaceSr.set(val($event))" placeholder="npr. Beograd" />
+            <datalist id="places-dl">
+              @for (pl of placesFor(); track pl) {
+                <option [value]="pl"></option>
+              }
+            </datalist>
+          </label>
+          <label>
+            Mesto (engleski, nije obavezno)
+            <input [value]="upPlaceEn()" (input)="upPlaceEn.set(val($event))" placeholder="npr. Belgrade" />
+          </label>
+          <label
+            class="drop"
+            [class.over]="dragOver()"
+            (dragover)="$event.preventDefault(); dragOver.set(true)"
+            (dragleave)="dragOver.set(false)"
+            (drop)="dropFiles($event)"
+          >
+            <input type="file" multiple accept="image/jpeg,image/png,image/webp" (change)="pickFiles($event)" />
+            @if (upFiles().length) {
+              <strong>{{ upFiles().length }} izabrano</strong>
+            } @else {
+              <span>Prevuci slike ovde<br />ili klikni da izabereš</span>
+            }
+          </label>
+          <button type="button" class="save wide" [disabled]="!upFiles().length || busy()" (click)="uploadNow()">Dodaj</button>
+          <p class="hint">Slike se same smanje za web. Originali ostaju kod tebe.</p>
+        </div>
+      </aside>
+
+      <!-- sredina: mreža za prevlačenje -->
+      <section class="board">
+        <p class="hint top">
+          Prevuci sliku da promeniš redosled. Klikni na sliku da je urediš.
+          @if (filter()) {
+            Redosled unutar države se poštuje i u prikazu "Sve".
+          }
+        </p>
+        <div class="grid" cdkDropList cdkDropListOrientation="mixed" [cdkDropListData]="visible()" (cdkDropListDropped)="drop($event)">
+          @for (p of visible(); track p.id; let i = $index) {
+            <div class="cell" cdkDrag [cdkDragData]="p" [class.sel]="p.id === selectedId()" (click)="selectedId.set(p.id)">
+              <div class="num">{{ i + 1 }}</div>
+              <app-photo [photo]="p" />
+              <div class="meta">
+                <span class="flag fi fi-{{ iso(p.country) }}"></span>
+                <span class="pl">{{ p.place.sr }}</span>
+                @if (p.featured) {
+                  <span class="star" title="Izdvojeno">★</span>
+                }
+                @if (site()?.hero === p.id) {
+                  <span class="star" title="Naslovna">⌂</span>
+                }
+              </div>
+              <div class="cell-ph" *cdkDragPlaceholder></div>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- desno: uređivanje -->
+      <aside class="editor">
+        @if (selected(); as p) {
+          <div class="ed-head">
+            <h3>{{ p.place.sr }}</h3>
+            <span class="file">{{ p.file }} · {{ p.w }}×{{ p.h }}</span>
+          </div>
+
+          <div class="pv-wrap">
+            <div
+              class="pv"
+              (pointerdown)="panDown($event, p)"
+              (pointermove)="panMove($event, p)"
+              (pointerup)="panUp()"
+              (pointercancel)="panUp()"
+              [style.transform]="'rotate(' + p.tilt + 'deg)'"
+            >
+              <app-photo [photo]="p" size="full" [ratio]="p.w + ' / ' + p.h" />
+            </div>
+            <div class="pv sq">
+              <app-photo [photo]="p" ratio="1 / 1" />
+            </div>
+          </div>
+          <p class="hint">Na sajtu se slika vidi u svom originalnom obliku. Ako želiš da iseceš detalj: pojačaj <b>Uvećanje</b>, pa prevuci veliku sliku mišem. Mali kvadrat je izgled na mapi i na početnoj. U lightbox-u se uvek vidi cela slika.</p>
+
+          <label class="rng">
+            Uvećanje <b>{{ p.crop.zoom.toFixed(2) }}×</b>
+            <input type="range" min="1" max="3" step="0.01" [value]="p.crop.zoom" (input)="updateCrop(p.id, { zoom: num($event) })" />
+          </label>
+          <label class="rng">
+            Nagib (izdvojene slike na početnoj) <b>{{ p.tilt }}°</b>
+            <input type="range" min="-8" max="8" step="0.1" [value]="p.tilt" (input)="updatePhoto(p.id, { tilt: num($event) })" />
+          </label>
+          <div class="row">
+            <button type="button" (click)="updateCrop(p.id, { x: 50, y: 50, zoom: 1 })">Resetuj isečak</button>
+            <button type="button" (click)="updatePhoto(p.id, { tilt: 0 })">Ravno</button>
+          </div>
+          <div class="row">
+            <button type="button" (click)="rotate(p, -90)" [disabled]="busy()">↺ Rotiraj levo</button>
+            <button type="button" (click)="rotate(p, 90)" [disabled]="busy()">↻ Rotiraj desno</button>
+          </div>
+
+          <label>
+            Mesto (srpski)
+            <input [value]="p.place.sr" list="sel-places" (change)="updatePlace(p.id, 'sr', val($event))" />
+            <datalist id="sel-places">
+              @for (pl of placesOfSelected(); track pl) {
+                <option [value]="pl"></option>
+              }
+            </datalist>
+          </label>
+          <label>
+            Mesto (engleski)
+            <input [value]="p.place.en" (change)="updatePlace(p.id, 'en', val($event))" />
+          </label>
+          <label>
+            Država
+            <select (change)="updatePhoto(p.id, { country: val($event) })">
+              @for (c of countries(); track c.id) {
+                <option [value]="c.id" [selected]="c.id === p.country">{{ c.name.sr }}</option>
+              }
+            </select>
+          </label>
+
+          <label class="check">
+            <input type="checkbox" [checked]="!!p.featured" (change)="updatePhoto(p.id, { featured: $any($event.target).checked })" />
+            Izdvojeno na početnoj
+          </label>
+          <div class="row">
+            <button type="button" [class.on]="site()?.hero === p.id" (click)="setHero(p)">⌂ Glavna slika na početnoj</button>
+            <button type="button" [class.on]="isCover(p)" (click)="setCover(p)">Slika države na mapi</button>
+          </div>
+
+          <div class="row">
+            <button type="button" (click)="move(p.id, 'top')">⇈ Na početak</button>
+            <button type="button" (click)="move(p.id, -1)">↑</button>
+            <button type="button" (click)="move(p.id, 1)">↓</button>
+            <button type="button" (click)="move(p.id, 'bottom')">⇊ Na kraj</button>
+          </div>
+          <div class="pos">Pozicija {{ selectedIndex() + 1 }} od {{ photos().length }}</div>
+
+          <button type="button" class="danger" (click)="remove(p)">🗑 Obriši fotografiju</button>
+        } @else {
+          <div class="empty">
+            <p>Klikni na fotografiju da je urediš.</p>
+            <ul>
+              <li>pomeri isečak i uvećaj</li>
+              <li>promeni nagib polaroida</li>
+              <li>rotiraj za 90°</li>
+              <li>promeni mesto ili državu</li>
+              <li>izdvoji je na početnoj</li>
+              <li>obriši</li>
+            </ul>
+          </div>
+        }
+      </aside>
+    </div>
+  }
+
+  <!-- ======================= DRŽAVE ======================= -->
+  @if (tab() === 'countries') {
+    <div class="pagepad">
+      <p class="hint">Redosled država ovde je redosled na sajtu. Opis se vidi na stranici države.</p>
+      <div class="clist">
+        @for (c of countries(); track c.id; let i = $index) {
+          <div class="ccard">
+            <div class="chead">
+              <span class="flag fi fi-{{ c.iso }}"></span>
+              <strong>{{ c.name.sr }}</strong>
+              <span class="cnt">{{ counts().get(c.id) ?? 0 }} fotografija</span>
+              <span class="sp"></span>
+              <button type="button" (click)="moveCountry(c.id, -1)" [disabled]="i === 0">↑</button>
+              <button type="button" (click)="moveCountry(c.id, 1)" [disabled]="i === countries().length - 1">↓</button>
+              <button type="button" class="danger sm" (click)="removeCountry(c)">Obriši</button>
+            </div>
+            <div class="cgrid">
+              <label>Ime (srpski)<input [value]="c.name.sr" (change)="updateCountry(c.id, { name: { sr: val($event), en: c.name.en } })" /></label>
+              <label>Ime (engleski)<input [value]="c.name.en" (change)="updateCountry(c.id, { name: { sr: c.name.sr, en: val($event) } })" /></label>
+              <label class="span2">Opis (srpski)<textarea rows="2" [value]="c.desc.sr" (change)="updateCountry(c.id, { desc: { sr: val($event), en: c.desc.en } })"></textarea></label>
+              <label class="span2">Opis (engleski)<textarea rows="2" [value]="c.desc.en" (change)="updateCountry(c.id, { desc: { sr: c.desc.sr, en: val($event) } })"></textarea></label>
+            </div>
+            <div class="covers">
+              <span class="lbl">Slika na mapi:</span>
+              @for (p of photosOf(c.id).slice(0, 24); track p.id) {
+                <button type="button" class="cv" [class.on]="c.cover === p.id" (click)="updateCountry(c.id, { cover: p.id })" [title]="p.place.sr">
+                  <img [src]="thumb(p)" alt="" loading="lazy" />
+                </button>
+              }
+            </div>
+            <details>
+              <summary>Napredno: položaj na mapi</summary>
+              <div class="cgrid four">
+                <label>Geo. širina (lat)<input type="number" step="0.01" [value]="c.lat" (change)="updateCountry(c.id, { lat: num($event) })" /></label>
+                <label>Geo. dužina (lng)<input type="number" step="0.01" [value]="c.lng" (change)="updateCountry(c.id, { lng: num($event) })" /></label>
+                <label>Polaroid X (0–1000)<input type="number" [value]="c.card.x" (change)="updateCountry(c.id, { card: { x: num($event), y: c.card.y, rot: c.card.rot } })" /></label>
+                <label>Polaroid Y (0–960)<input type="number" [value]="c.card.y" (change)="updateCountry(c.id, { card: { x: c.card.x, y: num($event), rot: c.card.rot } })" /></label>
+              </div>
+              <p class="hint">Mapa prikazuje Balkan, srednju Evropu i Mediteran. Država van tog dela sveta će i dalje imati svoju stranicu i biće u listi, samo pin neće biti na mapi.</p>
+            </details>
+          </div>
+        }
+      </div>
+
+      <div class="ccard add">
+        <h3>Nova država</h3>
+        <div class="cgrid four">
+          <label>Kod za zastavu (2 slova)<input maxlength="2" placeholder="it" [value]="nc().iso" (input)="nc.set({ ...nc(), iso: val($event) })" /></label>
+          <label>Ime (srpski)<input placeholder="Italija" [value]="nc().sr" (input)="nc.set({ ...nc(), sr: val($event) })" /></label>
+          <label>Ime (engleski)<input placeholder="Italy" [value]="nc().en" (input)="nc.set({ ...nc(), en: val($event) })" /></label>
+          <label>Pin: lat / lng
+            <span class="two">
+              <input type="number" step="0.01" [value]="nc().lat" (input)="nc.set({ ...nc(), lat: num($event) })" />
+              <input type="number" step="0.01" [value]="nc().lng" (input)="nc.set({ ...nc(), lng: num($event) })" />
+            </span>
+          </label>
+        </div>
+        <p class="hint">Kod za zastavu: it = Italija, es = Španija, fr = Francuska, at = Austrija, de = Nemačka, bg = Bugarska, mk = S. Makedonija, al = Albanija, tr = Turska. Koordinate nađeš na Google mapama (desni klik na mesto).</p>
+        <button type="button" class="save" (click)="addCountry()">Dodaj državu</button>
+      </div>
+    </div>
+  }
+
+  <!-- ======================= TEKSTOVI ======================= -->
+  @if (tab() === 'texts') {
+    @if (site(); as s) {
+      <div class="pagepad texts">
+        <div class="ccard">
+          <h3>Naslovna</h3>
+          <div class="cgrid">
+            <label>Rečenica ispod imena (srpski)<input [value]="s.taglineSr" (change)="updateSite({ taglineSr: val($event) })" /></label>
+            <label>Rečenica ispod imena (engleski)<input [value]="s.taglineEn" (change)="updateSite({ taglineEn: val($event) })" /></label>
+          </div>
+          <p class="hint">Glavnu sliku na početnoj biraš u tabu Fotografije → klikni sliku → "Glavna slika na početnoj".</p>
+        </div>
+        <div class="ccard">
+          <h3>O meni</h3>
+          <div class="about-row">
+            <div class="about-pic">
+              @if (s.aboutPhoto) {
+                <img [src]="s.aboutPhoto" alt="" />
+              } @else {
+                <span>Nema slike</span>
+              }
+              <label class="filebtn">Izaberi svoju sliku<input type="file" accept="image/*" (change)="uploadAbout($event)" /></label>
+            </div>
+            <div class="cgrid one">
+              <label>Tekst (srpski) — prazan red = novi pasus<textarea rows="7" [value]="s.aboutSr" (change)="updateSite({ aboutSr: val($event) })"></textarea></label>
+              <label>Tekst (engleski)<textarea rows="7" [value]="s.aboutEn" (change)="updateSite({ aboutEn: val($event) })"></textarea></label>
+            </div>
+          </div>
+        </div>
+        <div class="ccard">
+          <h3>Kontakt</h3>
+          <div class="cgrid">
+            <label>Email<input type="email" placeholder="ime@gmail.com" [value]="s.email" (change)="updateSite({ email: val($event) })" /></label>
+            <label>Instagram (bez @)<input placeholder="katarina.foto" [value]="s.instagram" (change)="updateSite({ instagram: val($event) })" /></label>
+          </div>
+          <p class="hint">Ako ostaviš prazno, to polje se ne prikazuje na sajtu.</p>
+        </div>
+      </div>
+    }
+  }
+</div>

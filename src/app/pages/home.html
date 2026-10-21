@@ -1,0 +1,111 @@
+<!-- ============ NASLOVNA ============ -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-text rise">
+      <img class="deco h-branch" src="img/ukrasi/linija-maslina.webp" alt="" />
+      <div class="label">{{ i18n.t('photography') }} · {{ data.countries().length }} {{ i18n.t('countries') }}</div>
+      <h1>Katarina<br /><span>Komatina</span></h1>
+      <p class="tag hand">
+        <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.6 7.4L21 12l-7.4 1.6L12 21l-1.6-7.4L3 12l7.4-1.6z" /></svg>
+        {{ tagline() }}
+      </p>
+      <div class="cta">
+        <a routerLink="/fotografije" class="btn">{{ i18n.t('explorePhotos') }} <span class="arrow">→</span></a>
+        <a routerLink="/mapa" class="btn ghost">{{ i18n.t('navMap') }}</a>
+      </div>
+      <div class="stats label">
+        <span>{{ data.photos().length }} {{ i18n.t('photos') }}</span>
+        <span>{{ data.placeCount() }} {{ i18n.t('places') }}</span>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      @if (hero(); as h) {
+        <button type="button" class="hero-img torn-left" (click)="openHero()" [attr.aria-label]="i18n.pick(h.place)">
+          <app-photo [photo]="h" size="full" ratio="4 / 5" [eager]="true" [alt]="i18n.pick(h.place)" />
+        </button>
+      }
+      <img class="deco h-stamp" src="img/ukrasi/pecat.webp" alt="" />
+      <a routerLink="/mapa" class="ticket">
+        <span class="t1">{{ i18n.t('exploreByCountry') }}</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" /></svg>
+      </a>
+      @if (small(); as s) {
+        <button type="button" class="mini" (click)="openFeatured(featured().indexOf(s))" [attr.aria-label]="i18n.pick(s.place)">
+          <span class="tape"></span>
+          <app-photo [photo]="s" ratio="1 / 1" />
+        </button>
+      }
+    </div>
+  </div>
+  <div class="scroll label" aria-hidden="true">{{ i18n.t('scroll') }} ↓</div>
+</section>
+
+<!-- ============ MAPA ============ -->
+<section class="wrap block map-block">
+  <div class="section-title">
+    <h2>{{ i18n.t('exploreByCountry') }}</h2>
+    <p class="lead">{{ i18n.t('chooseCountryHint') }}</p>
+  </div>
+  <div class="map-grid">
+    <div class="map-paper paper-card">
+      <app-world-map />
+    </div>
+    <app-country-list [search]="false" />
+  </div>
+</section>
+
+<!-- ============ IZDVOJENO ============ -->
+<section class="block featured">
+  <div class="wrap section-title">
+    <h2>{{ i18n.t('featured') }}</h2>
+    <p class="lead">{{ i18n.t('featuredSub') }}</p>
+  </div>
+  <div class="reel">
+    @for (p of featured(); track p.id; let i = $index) {
+      <button type="button" class="reel-item" [style.--ar]="p.w / p.h" [style.--tilt.deg]="p.tilt" (click)="openFeatured(i)" [attr.aria-label]="i18n.pick(p.place)">
+        <app-photo [photo]="p" [ratio]="p.w + ' / ' + p.h" [alt]="i18n.pick(p.place)" />
+      </button>
+    }
+  </div>
+</section>
+
+<!-- ============ RAZGLEDNICE DRŽAVA ============ -->
+<section class="wrap block">
+  <div class="cards">
+    @for (c of postcards(); track c.id) {
+      <a class="postcard paper-card" [routerLink]="['/drzava', c.id]" [style.--r.deg]="c.rot">
+        @if (c.ill) {
+          <img class="ill" [src]="'img/ilustracije/' + c.ill + '.webp'" alt="" loading="lazy" />
+        }
+        <span class="pc-name">
+          <span class="hand">{{ c.name }}</span>
+          <span class="flag fi fi-{{ c.iso }}"></span>
+        </span>
+        <span class="label">{{ c.count }} {{ i18n.t('photos') }} →</span>
+      </a>
+    }
+  </div>
+</section>
+
+<!-- ============ O MENI ============ -->
+<section class="about-band">
+  <div class="band torn-top">
+    <div class="wrap about-in">
+      <div class="me">
+        <span class="tape"></span>
+        @if (data.site()?.aboutPhoto; as src) {
+          <img [src]="src" alt="Katarina Komatina" class="cam photo" />
+        } @else {
+          <img src="img/ukrasi/aparat.webp" alt="" class="cam" />
+        }
+      </div>
+      <div class="about-text">
+        <h2>{{ i18n.t('aboutTitle') }}</h2>
+        <p class="lead">{{ about() }}</p>
+        <a routerLink="/o-meni" class="btn">{{ i18n.t('aboutCta') }} <span class="arrow">→</span></a>
+      </div>
+      <img class="deco a-flower" src="img/ukrasi/cvet.webp" alt="" />
+    </div>
+  </div>
+</section>
