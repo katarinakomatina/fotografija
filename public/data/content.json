@@ -438,7 +438,11 @@
    },
    "tilt": -0.8,
    "v": 1,
-   "featured": true
+   "featured": true,
+   "area": {
+    "sr": "Kalemegdan",
+    "en": "Kalemegdan"
+   }
   },
   {
    "id": "bosna-i-hercegovina-trebinje-01",
@@ -935,7 +939,11 @@
    },
    "tilt": 1.4,
    "v": 1,
-   "featured": true
+   "featured": true,
+   "area": {
+    "sr": "Stari grad",
+    "en": "Stari Grad"
+   }
   },
   {
    "id": "hrvatska-dubrovnik-02",
@@ -1044,7 +1052,11 @@
    },
    "tilt": -1.4,
    "v": 1,
-   "featured": true
+   "featured": true,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-beograd-51",
@@ -1062,7 +1074,11 @@
     "zoom": 1
    },
    "tilt": 1.3,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
   },
   {
    "id": "hrvatska-dubrovnik-03",
@@ -1521,7 +1537,11 @@
    },
    "tilt": 0.2,
    "v": 1,
-   "featured": true
+   "featured": true,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-beograd-38",
@@ -1539,7 +1559,11 @@
     "zoom": 1
    },
    "tilt": 0,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Kalemegdan",
+    "en": "Kalemegdan"
+   }
   },
   {
    "id": "madjarska-budimpesta-10",
@@ -1594,7 +1618,11 @@
     "zoom": 1
    },
    "tilt": 1.2,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-beograd-30",
@@ -1613,7 +1641,11 @@
    },
    "tilt": -0.3,
    "v": 1,
-   "featured": false
+   "featured": false,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "rumunija-nera-11",
@@ -1650,7 +1682,11 @@
    },
    "tilt": -0.5,
    "v": 1,
-   "featured": true
+   "featured": true,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-valjevo-02",
@@ -1833,7 +1869,11 @@
    },
    "tilt": -0.7,
    "v": 1,
-   "featured": true
+   "featured": true,
+   "area": {
+    "sr": "Vračar",
+    "en": "Vračar"
+   }
   },
   {
    "id": "srbija-zagajicka-brda-01",
@@ -1907,7 +1947,11 @@
     "zoom": 1
    },
    "tilt": -0.3,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
   },
   {
    "id": "rumunija-temisvar-04",
@@ -2052,7 +2096,11 @@
     "zoom": 1
    },
    "tilt": -1.3,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-zagajicka-brda-02",
@@ -2306,7 +2354,11 @@
     "zoom": 1
    },
    "tilt": 1,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Kalemegdan",
+    "en": "Kalemegdan"
+   }
   },
   {
    "id": "srbija-subotica-01",
@@ -2793,7 +2845,11 @@
     "zoom": 1
    },
    "tilt": 0.6,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Novi Beograd",
+    "en": "New Belgrade"
+   }
   },
   {
    "id": "srbija-zrenjanin-06",
@@ -2811,24 +2867,6 @@
     "zoom": 1
    },
    "tilt": 1,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-12",
-   "file": "srbija-beograd-12.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1600,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.5,
    "v": 1
   },
   {
@@ -2901,7 +2939,11 @@
     "zoom": 1
    },
    "tilt": 0.5,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Novi Beograd",
+    "en": "New Belgrade"
+   }
   },
   {
    "id": "srbija-vrsac-07",
@@ -2937,7 +2979,11 @@
     "zoom": 1
    },
    "tilt": -1.4,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
   },
   {
    "id": "srbija-vrnjacka-banja-07",
@@ -2973,7 +3019,11 @@
     "zoom": 1
    },
    "tilt": 0.5,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Kalemegdan",
+    "en": "Kalemegdan"
+   }
   },
   {
    "id": "srbija-beograd-08",
@@ -2991,7 +3041,11 @@
     "zoom": 1
    },
    "tilt": 1.6,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Novi Beograd",
+    "en": "New Belgrade"
+   }
   },
   {
    "id": "srbija-vrnjacka-banja-08",
@@ -3099,7 +3153,11 @@
     "zoom": 1
    },
    "tilt": -0.7,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Novi Beograd",
+    "en": "New Belgrade"
+   }
   },
   {
    "id": "srbija-beograd-11",
@@ -3117,7 +3175,11 @@
     "zoom": 1
    },
    "tilt": -0.4,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Novi Beograd",
+    "en": "New Belgrade"
+   }
   },
   {
    "id": "srbija-zrenjanin-11",
@@ -3171,7 +3233,11 @@
     "zoom": 1
    },
    "tilt": -0.1,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Ada Ciganlija",
+    "en": "Ada Ciganlija"
+   }
   },
   {
    "id": "srbija-zrenjanin-14",
@@ -3207,7 +3273,11 @@
     "zoom": 1
    },
    "tilt": -1.1,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Novi Beograd",
+    "en": "New Belgrade"
+   }
   },
   {
    "id": "srbija-beograd-16",
@@ -3225,7 +3295,11 @@
     "zoom": 1
    },
    "tilt": -1.2,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Ada Ciganlija",
+    "en": "Ada Ciganlija"
+   }
   },
   {
    "id": "srbija-beograd-09",
@@ -3243,7 +3317,11 @@
     "zoom": 1
    },
    "tilt": 1,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Novi Beograd",
+    "en": "New Belgrade"
+   }
   },
   {
    "id": "srbija-beograd-18",
@@ -3261,7 +3339,11 @@
     "zoom": 1
    },
    "tilt": 0.9,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Surčin",
+    "en": "Surčin"
+   }
   },
   {
    "id": "srbija-beograd-21",
@@ -3279,7 +3361,11 @@
     "zoom": 1
    },
    "tilt": -0.3,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Kalemegdan",
+    "en": "Kalemegdan"
+   }
   },
   {
    "id": "srbija-beograd-22",
@@ -3297,7 +3383,11 @@
     "zoom": 1
    },
    "tilt": 1.2,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
   },
   {
    "id": "srbija-beograd-23",
@@ -3315,7 +3405,11 @@
     "zoom": 1
    },
    "tilt": -1.3,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zvezdara",
+    "en": "Zvezdara"
+   }
   },
   {
    "id": "srbija-beograd-24",
@@ -3333,7 +3427,11 @@
     "zoom": 1
    },
    "tilt": -0.2,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-beograd-33",
@@ -3352,7 +3450,11 @@
    },
    "tilt": 1.5,
    "v": 1,
-   "featured": false
+   "featured": false,
+   "area": {
+    "sr": "Kalemegdan",
+    "en": "Kalemegdan"
+   }
   },
   {
    "id": "srbija-subotica-04",
@@ -3388,7 +3490,11 @@
     "zoom": 1
    },
    "tilt": -1.1,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Avala",
+    "en": "Avala"
+   }
   },
   {
    "id": "srbija-beograd-36",
@@ -3406,7 +3512,11 @@
     "zoom": 1
    },
    "tilt": -0.9,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Kalemegdan",
+    "en": "Kalemegdan"
+   }
   },
   {
    "id": "srbija-beograd-37",
@@ -3424,7 +3534,11 @@
     "zoom": 1
    },
    "tilt": -0.9,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Kalemegdan",
+    "en": "Kalemegdan"
+   }
   },
   {
    "id": "srbija-beograd-32",
@@ -3442,7 +3556,11 @@
     "zoom": 1
    },
    "tilt": 1.2,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Kalemegdan",
+    "en": "Kalemegdan"
+   }
   },
   {
    "id": "srbija-beograd-45",
@@ -3460,7 +3578,11 @@
     "zoom": 1
    },
    "tilt": 1.4,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Banovo brdo",
+    "en": "Banovo brdo"
+   }
   },
   {
    "id": "srbija-vrsac-06",
@@ -3496,7 +3618,11 @@
     "zoom": 1
    },
    "tilt": -1.2,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-beograd-13",
@@ -3514,7 +3640,11 @@
     "zoom": 1
    },
    "tilt": -1.5,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Novi Beograd",
+    "en": "New Belgrade"
+   }
   },
   {
    "id": "srbija-beograd-52",
@@ -3532,7 +3662,11 @@
     "zoom": 1
    },
    "tilt": 0.9,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-zlatibor-01",
@@ -3604,7 +3738,11 @@
     "zoom": 1
    },
    "tilt": -0.1,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-beograd-28",
@@ -3622,7 +3760,11 @@
     "zoom": 1
    },
    "tilt": 1.2,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-zasavica-03",
@@ -3658,7 +3800,11 @@
     "zoom": 1
    },
    "tilt": -1,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Avala",
+    "en": "Avala"
+   }
   },
   {
    "id": "srbija-beograd-53",
@@ -3676,7 +3822,11 @@
     "zoom": 1
    },
    "tilt": 1.2,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Banovo brdo",
+    "en": "Banovo brdo"
+   }
   },
   {
    "id": "srbija-beograd-41",
@@ -3694,7 +3844,11 @@
     "zoom": 1
    },
    "tilt": -1.6,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-beograd-58",
@@ -3712,7 +3866,11 @@
     "zoom": 1
    },
    "tilt": 0.4,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Surčin",
+    "en": "Surčin"
+   }
   },
   {
    "id": "srbija-beograd-59",
@@ -3731,7 +3889,11 @@
    },
    "tilt": -1.4,
    "v": 1,
-   "featured": true
+   "featured": true,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
    "id": "srbija-beograd-39",
@@ -3749,7 +3911,11 @@
     "zoom": 1
    },
    "tilt": 0.3,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Novi Beograd",
+    "en": "New Belgrade"
+   }
   },
   {
    "id": "srbija-beograd-49",
@@ -3767,7 +3933,11 @@
     "zoom": 1
    },
    "tilt": 0.6,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zvezdara",
+    "en": "Zvezdara"
+   }
   }
  ]
 }
