@@ -75,7 +75,11 @@ export class Admin {
   readonly placeFilter = linkedSignal({ source: this.filter, computation: () => '' });
   readonly areaFilter = linkedSignal({ source: this.placeFilter, computation: () => '' });
   /** slike označene kvadratićem (za dodelu opštine više slika odjednom) */
-  readonly picked = signal<ReadonlySet<string>>(new Set());
+  /** kad promeniš filter, oznake se brišu — da se nikad ne promene slike koje trenutno ne vidiš */
+  readonly picked = linkedSignal<string, ReadonlySet<string>>({
+    source: () => this.filter() + '|' + this.placeFilter() + '|' + this.areaFilter(),
+    computation: () => new Set(),
+  });
   readonly bulkArea = signal('');
 
   // dodavanje
