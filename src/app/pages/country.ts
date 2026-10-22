@@ -24,7 +24,7 @@ const PAGE = 32;
             @if (i18n.pick(c.desc)) {
               <p class="lead">{{ i18n.pick(c.desc) }}</p>
             }
-            <div class="label cnt">{{ photos().length }} {{ i18n.t('photos') }}</div>
+            <div class="label cnt">{{ i18n.count(photos().length, 'photos') }}</div>
           </div>
           <div class="art">
             @if (ills()[0]; as a) {

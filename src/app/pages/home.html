@@ -3,7 +3,7 @@
   <div class="wrap hero-in">
     <div class="hero-text rise">
       <img class="deco h-branch" src="img/ukrasi/linija-maslina.webp" alt="" />
-      <div class="label">{{ i18n.t('photography') }} · {{ data.countries().length }} {{ i18n.t('countries') }}</div>
+      <div class="label">{{ i18n.t('photography') }} · {{ i18n.count(data.countries().length, 'countries') }}</div>
       <h1>Katarina<br /><span>Komatina</span></h1>
       <p class="tag hand">
         <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.6 7.4L21 12l-7.4 1.6L12 21l-1.6-7.4L3 12l7.4-1.6z" /></svg>
@@ -14,8 +14,8 @@
         <a routerLink="/mapa" class="btn ghost">{{ i18n.t('navMap') }}</a>
       </div>
       <div class="stats label">
-        <span>{{ data.photos().length }} {{ i18n.t('photos') }}</span>
-        <span>{{ data.placeCount() }} {{ i18n.t('places') }}</span>
+        <span>{{ i18n.count(data.photos().length, 'photos') }}</span>
+        <span>{{ i18n.count(data.placeCount(), 'places') }}</span>
       </div>
     </div>
 
@@ -90,7 +90,7 @@
           <span class="hand">{{ c.name }}</span>
           <span class="flag fi fi-{{ c.iso }}"></span>
         </span>
-        <span class="label">{{ c.count }} {{ i18n.t('photos') }} →</span>
+        <span class="label">{{ i18n.count(c.count, 'photos') }} →</span>
       </a>
     }
   </div>

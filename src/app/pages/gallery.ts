@@ -33,7 +33,7 @@ const PAGE = 32;
         @if (country(); as c) {
           <span class="flag fi fi-{{ c.iso }}"></span> {{ i18n.pick(c.name) }} ·
         }
-        {{ list().length }} {{ i18n.t('photos') }}
+        {{ i18n.count(list().length, 'photos') }}
       </div>
     </section>
 

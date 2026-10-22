@@ -102,6 +102,34 @@ export class I18n {
     return this.dict()[key];
   }
 
+  /**
+   * Broj + reč u pravilnom obliku.
+   * Srpski: 1 država, 2–4 države, 5+ država (21 država, 22 države, 11–14 država).
+   */
+  count(n: number, what: 'photos' | 'countries' | 'places'): string {
+    const forms = {
+      sr: {
+        photos: ['fotografija', 'fotografije', 'fotografija'],
+        countries: ['država', 'države', 'država'],
+        places: ['mesto', 'mesta', 'mesta'],
+      },
+      en: {
+        photos: ['photograph', 'photographs', 'photographs'],
+        countries: ['country', 'countries', 'countries'],
+        places: ['place', 'places', 'places'],
+      },
+    }[this.lang()][what];
+    let i: number;
+    if (this.lang() === 'en') {
+      i = n === 1 ? 0 : 2;
+    } else {
+      const d = n % 10;
+      const h = n % 100;
+      i = d === 1 && h !== 11 ? 0 : d >= 2 && d <= 4 && (h < 12 || h > 14) ? 1 : 2;
+    }
+    return `${n} ${forms[i]}`;
+  }
+
   /** Bira srpski ili engleski deo iz objekta { sr, en } */
   pick(text: { sr: string; en: string } | undefined): string {
     if (!text) return '';
