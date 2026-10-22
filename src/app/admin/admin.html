@@ -70,6 +70,15 @@
             Mesto (engleski, nije obavezno)
             <input [value]="upPlaceEn()" (input)="upPlaceEn.set(val($event))" placeholder="npr. Belgrade" />
           </label>
+          <label>
+            Deo mesta / opština (nije obavezno)
+            <input [value]="upArea()" list="up-areas" (input)="upArea.set(val($event))" placeholder="npr. Zemun" />
+            <datalist id="up-areas">
+              @for (a of allAreas(); track a) {
+                <option [value]="a"></option>
+              }
+            </datalist>
+          </label>
           <label
             class="drop"
             [class.over]="dragOver()"
@@ -129,6 +138,16 @@
             <span class="file">{{ p.file }} · {{ p.w }}×{{ p.h }}</span>
           </div>
 
+          @if (cropping()) {
+            <app-cropper
+              [src]="'/api/original/' + p.file + '?v=' + (p.v || 1)"
+              [initial]="p.cut"
+              [busy]="busy()"
+              (apply)="applyCut(p, $event)"
+              (cancel)="cropping.set(false)"
+            />
+            <p class="hint">Prevuci okvir ili vuci kružiće na uglovima. Gore biraš oblik (npr. 4:5 ili 9:16). Original se čuva, pa uvek možeš da vratiš ceo kadar.</p>
+          } @else {
           <div class="pv-wrap">
             <div
               class="pv"
@@ -144,7 +163,13 @@
               <app-photo [photo]="p" ratio="1 / 1" />
             </div>
           </div>
-          <p class="hint">Na sajtu se slika vidi u svom originalnom obliku. Ako želiš da iseceš detalj: pojačaj <b>Uvećanje</b>, pa prevuci veliku sliku mišem. Mali kvadrat je izgled na mapi i na početnoj. U lightbox-u se uvek vidi cela slika.</p>
+          <div class="row">
+            <button type="button" class="primary" (click)="cropping.set(true)" [disabled]="busy()">✂ Iseci ručno</button>
+            @if (p.cut) {
+              <button type="button" (click)="uncut(p)" [disabled]="busy()">↩ Vrati ceo original</button>
+            }
+          </div>
+          <p class="hint"><b>Iseci ručno</b> = stvarno odsečeš deo slike (menja oblik slike svuda na sajtu). <b>Uvećanje</b> ispod = samo malo približi kadar u mreži, a ceo kadar se i dalje vidi kad neko otvori sliku. Mali kvadrat je izgled na mapi.</p>
 
           <label class="rng">
             Uvećanje <b>{{ p.crop.zoom.toFixed(2) }}×</b>
@@ -162,6 +187,7 @@
             <button type="button" (click)="rotate(p, -90)" [disabled]="busy()">↺ Rotiraj levo</button>
             <button type="button" (click)="rotate(p, 90)" [disabled]="busy()">↻ Rotiraj desno</button>
           </div>
+          }
 
           <label>
             Mesto (srpski)
@@ -176,6 +202,21 @@
             Mesto (engleski)
             <input [value]="p.place.en" (change)="updatePlace(p.id, 'en', val($event))" />
           </label>
+          <label>
+            Deo mesta / opština <small>(nije obavezno — npr. Zemun, Vračar; na sajtu se pojavi kao izbor unutar mesta)</small>
+            <input [value]="p.area?.sr ?? ''" list="sel-areas" placeholder="npr. Zemun" (change)="updateArea(p.id, 'sr', val($event))" />
+            <datalist id="sel-areas">
+              @for (a of areasOfSelected(); track a) {
+                <option [value]="a"></option>
+              }
+            </datalist>
+          </label>
+          @if (p.area?.sr) {
+            <label>
+              Deo mesta (engleski)
+              <input [value]="p.area?.en ?? ''" (change)="updateArea(p.id, 'en', val($event))" />
+            </label>
+          }
           <label>
             Država
             <select (change)="updatePhoto(p.id, { country: val($event) })">

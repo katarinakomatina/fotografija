@@ -46,3 +46,6 @@ Thumbs.db
 # Admin (lokalno) — kanta i rezervne kopije ne idu na GitHub
 /admin-server/kanta
 /admin-server/rezervne-kopije
+
+# Lične beleške (ne idu na GitHub)
+/UPUTSTVO.md

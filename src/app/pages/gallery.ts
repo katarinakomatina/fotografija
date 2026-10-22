@@ -40,15 +40,11 @@ const PAGE = 32;
     <section class="wrap">
       @if (current()) {
         <app-place-chips class="pchips" [photos]="countryPhotos()" [selected]="place()" (pick)="place.set($event)" />
+        @if (place() && areaCount() > 1) {
+          <app-place-chips class="pchips achips" by="area" [photos]="placeList()" [selected]="area()" [allLabel]="allOfLabel()" (pick)="area.set($event)" />
+        }
       }
-      <app-justified [photos]="shown()" [size]="current() ? 'large' : 'normal'" (open)="open($event)" />
-      @if (shown().length < list().length) {
-        <div class="more">
-          <button type="button" class="btn ghost" (click)="limit.set(limit() + PAGE)">
-            {{ i18n.t('showMore') }} ({{ list().length - shown().length }})
-          </button>
-        </div>
-      }
+      <app-justified [photos]="list()" [page]="PAGE" [size]="current() ? 'large' : 'normal'" (open)="open($event)" />
     </section>
   `,
   styles: `
@@ -161,10 +157,10 @@ const PAGE = 32;
       display: block;
       margin-bottom: 26px;
     }
-    .more {
-      display: flex;
-      justify-content: center;
-      margin-top: 50px;
+    .achips {
+      margin-top: -14px;
+      padding-left: 16px;
+      border-left: 2px dashed rgba(45, 36, 28, 0.3);
     }
     @media (max-width: 700px) {
       .chips {
@@ -193,7 +189,6 @@ export class Gallery {
   readonly country = computed(() => this.data.country(this.current()));
 
   readonly place = linkedSignal({ source: this.current, computation: () => '' });
-  readonly limit = linkedSignal({ source: () => this.current() + '|' + this.place(), computation: () => PAGE });
 
   readonly chips = computed(() => {
     const counts = this.data.countByCountry();
@@ -208,13 +203,24 @@ export class Gallery {
     return c ? this.data.photosOf(c) : [];
   });
 
-  readonly list = computed(() => {
+  readonly placeList = computed(() => {
     if (!this.current()) return this.data.photos();
     const pl = this.place();
     return pl ? this.countryPhotos().filter((p) => p.place.sr === pl) : this.countryPhotos();
   });
+  /** izabran deo mesta (opština); vraća se na sve kad se promeni mesto */
+  readonly area = linkedSignal({ source: this.place, computation: () => '' });
+  readonly areaCount = computed(() => new Set(this.placeList().map((p) => p.area?.sr).filter(Boolean)).size);
+  readonly list = computed(() => {
+    const a = this.area();
+    return a ? this.placeList().filter((p) => p.area?.sr === a) : this.placeList();
+  });
+  readonly allOfLabel = computed(() => {
+    const p = this.placeList()[0];
+    return p ? this.i18n.t('allOf') + ' ' + this.i18n.pick(p.place) : '';
+  });
 
-  readonly shown = computed(() => this.list().slice(0, this.limit()));
+
 
   pick(id: string): void {
     this.router.navigate([], { queryParams: { drzava: id || null }, replaceUrl: true });

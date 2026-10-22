@@ -41,14 +41,10 @@ const PAGE = 32;
 
       <section class="wrap">
         <app-place-chips class="pchips" [photos]="photos()" [selected]="place()" (pick)="place.set($event)" />
-        <app-justified [photos]="shown()" (open)="open($event)" />
-        @if (shown().length < filtered().length) {
-          <div class="more">
-            <button type="button" class="btn ghost" (click)="limit.set(limit() + 32)">
-              {{ i18n.t('showMore') }} ({{ filtered().length - shown().length }})
-            </button>
-          </div>
+        @if (place() && areaCount() > 1) {
+          <app-place-chips class="pchips achips" by="area" [photos]="filtered()" [selected]="area()" [allLabel]="allOfLabel()" (pick)="area.set($event)" />
         }
+        <app-justified [photos]="finalList()" [page]="PAGE" (open)="open($event)" />
       </section>
 
       <section class="wrap others">
@@ -159,6 +155,11 @@ const PAGE = 32;
       display: block;
       margin: -20px 0 30px;
     }
+    .achips {
+      margin-top: -14px;
+      padding-left: 16px;
+      border-left: 2px dashed rgba(45, 36, 28, 0.3);
+    }
     .more {
       display: flex;
       justify-content: center;
@@ -224,6 +225,7 @@ export class CountryPage {
   protected readonly i18n = inject(I18n);
   private readonly data = inject(Data);
   private readonly lb = inject(LightboxService);
+  protected readonly PAGE = PAGE;
 
   readonly id = input.required<string>();
   readonly country = computed(() => this.data.country(this.id()));
@@ -234,14 +236,23 @@ export class CountryPage {
     const pl = this.place();
     return pl ? this.photos().filter((p) => p.place.sr === pl) : this.photos();
   });
-  readonly limit = linkedSignal({ source: () => this.id() + '|' + this.place(), computation: () => PAGE });
-  readonly shown = computed(() => this.filtered().slice(0, this.limit()));
+  /** izabran deo mesta (opština); vraća se na sve kad se promeni mesto */
+  readonly area = linkedSignal({ source: this.place, computation: () => '' });
+  readonly areaCount = computed(() => new Set(this.filtered().map((p) => p.area?.sr).filter(Boolean)).size);
+  readonly finalList = computed(() => {
+    const a = this.area();
+    return a ? this.filtered().filter((p) => p.area?.sr === a) : this.filtered();
+  });
+  readonly allOfLabel = computed(() => {
+    const p = this.filtered()[0];
+    return p ? this.i18n.t('allOf') + ' ' + this.i18n.pick(p.place) : '';
+  });
   readonly ills = computed(() => this.country()?.illustrations ?? []);
 
 
   readonly others = computed(() => this.data.countries().filter((c) => c.id !== this.id()));
 
   open(i: number): void {
-    this.lb.open(this.filtered(), i);
+    this.lb.open(this.finalList(), i);
   }
 }

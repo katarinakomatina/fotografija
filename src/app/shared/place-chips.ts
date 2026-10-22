@@ -10,7 +10,7 @@ import { I18n } from '../core/i18n';
     @if (places().length > 1) {
       <div class="chips" role="group" [attr.aria-label]="i18n.t('places')">
         <button type="button" class="chip all" [class.on]="!selected()" (click)="pick.emit('')" [attr.aria-pressed]="!selected()">
-          {{ i18n.t('allPlaces') }} <span class="n">{{ photos().length }}</span>
+          {{ allLabel() || i18n.t('allPlaces') }} <span class="n">{{ photos().length }}</span>
         </button>
         @for (pl of places(); track pl.key) {
           <button type="button" class="chip" [class.on]="selected() === pl.key" (click)="pick.emit(pl.key)" [attr.aria-pressed]="selected() === pl.key">
@@ -97,15 +97,21 @@ export class PlaceChips {
 
   readonly photos = input.required<Photo[]>();
   readonly selected = input('');
+  /** 'place' = mesta u državi, 'area' = delovi jednog mesta (npr. opštine Beograda) */
+  readonly by = input<'place' | 'area'>('place');
+  readonly allLabel = input('');
   readonly pick = output<string>();
 
   /** mesta sortirana po broju slika (key = srpsko ime, isto u oba jezika) */
   readonly places = computed(() => {
     const m = new Map<string, { key: string; name: string; count: number }>();
+    const by = this.by();
     for (const p of this.photos()) {
-      const e = m.get(p.place.sr) ?? { key: p.place.sr, name: this.i18n.pick(p.place), count: 0 };
+      const t = by === 'area' ? p.area : p.place;
+      if (!t?.sr) continue;
+      const e = m.get(t.sr) ?? { key: t.sr, name: this.i18n.pick(t), count: 0 };
       e.count++;
-      m.set(p.place.sr, e);
+      m.set(t.sr, e);
     }
     return [...m.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   });

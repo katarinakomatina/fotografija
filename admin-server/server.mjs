@@ -18,6 +18,7 @@ const FULL = path.join(PUB, 'photos', 'full');
 const THUMB = path.join(PUB, 'photos', 'thumb');
 const BACKUP = path.join(ROOT, 'admin-server', 'rezervne-kopije');
 const TRASH = path.join(ROOT, 'admin-server', 'kanta');
+const ORIG = path.join(ROOT, 'admin-server', 'originali'); // cela slika pre ručnog isecanja
 const PORT = 4300;
 
 const FULL_SIZE = 2000; // najduža strana velike slike (px)
@@ -78,7 +79,7 @@ function validate(c) {
 async function moveOrphansToTrash(content) {
   const used = new Set(content.photos.map((p) => p.file));
   const moved = [];
-  for (const dir of [FULL, THUMB]) {
+  for (const dir of [FULL, THUMB, ORIG]) {
     if (!existsSync(dir)) continue;
     for (const f of await fs.readdir(dir)) {
       if (used.has(f)) continue;
@@ -147,9 +148,74 @@ app.post('/api/upload', upload.array('files'), async (req, res) => {
   res.json(out);
 });
 
+const okFile = (f) => typeof f === 'string' && /^[\w.-]+\.jpe?g$/i.test(f) && existsSync(path.join(FULL, f));
+
+/** iz jedne slike napravi veliku + malu verziju */
+async function writeBoth(img, file) {
+  const info = await img
+    .clone()
+    .resize(FULL_SIZE, FULL_SIZE, { fit: 'inside', withoutEnlargement: true })
+    .jpeg({ quality: 86, progressive: true, mozjpeg: true })
+    .toFile(path.join(FULL, file));
+  await img
+    .clone()
+    .resize(THUMB_SIZE, THUMB_SIZE, { fit: 'inside', withoutEnlargement: true })
+    .jpeg({ quality: 78, progressive: true, mozjpeg: true })
+    .toFile(path.join(THUMB, file));
+  return { w: info.width, h: info.height };
+}
+
+/** original za alat za isecanje (ako slika još nije isecana, to je sama velika slika) */
+app.get('/api/original/:file', (req, res) => {
+  const f = req.params.file;
+  if (!okFile(f)) return res.status(404).end();
+  res.set('Cache-Control', 'no-store');
+  const o = path.join(ORIG, f);
+  res.sendFile(existsSync(o) ? o : path.join(FULL, f));
+});
+
+app.post('/api/crop', async (req, res) => {
+  const { file, x, y, w, h } = req.body ?? {};
+  const nums = [x, y, w, h];
+  if (!okFile(file) || nums.some((n) => typeof n !== 'number' || !isFinite(n)) || w <= 0 || h <= 0) {
+    return res.status(400).json({ error: 'Loš zahtev' });
+  }
+  await fs.mkdir(ORIG, { recursive: true });
+  const o = path.join(ORIG, file);
+  if (!existsSync(o)) await fs.copyFile(path.join(FULL, file), o); // sačuvaj ceo kadar samo prvi put
+  const buf = await fs.readFile(o);
+  const meta = await sharp(buf).metadata();
+  const left = Math.max(0, Math.round(x * meta.width));
+  const top = Math.max(0, Math.round(y * meta.height));
+  const width = Math.max(10, Math.min(meta.width - left, Math.round(w * meta.width)));
+  const height = Math.max(10, Math.min(meta.height - top, Math.round(h * meta.height)));
+  const size = await writeBoth(sharp(buf).extract({ left, top, width, height }), file);
+  console.log(`✂ ${file} → ${size.w}×${size.h}`);
+  res.json(size);
+});
+
+app.post('/api/uncrop', async (req, res) => {
+  const { file } = req.body ?? {};
+  if (!okFile(file)) return res.status(400).json({ error: 'Loš zahtev' });
+  const o = path.join(ORIG, file);
+  if (!existsSync(o)) return res.status(400).json({ error: 'Nema sačuvanog originala' });
+  const size = await writeBoth(sharp(await fs.readFile(o)), file);
+  console.log(`↩ ${file} vraćen original`);
+  res.json(size);
+});
+
 app.post('/api/rotate', async (req, res) => {
   const { file, deg } = req.body ?? {};
   if (!file || /[\\/]/.test(file) || ![90, -90, 180].includes(deg)) return res.status(400).json({ error: 'Loš zahtev' });
+  // ako postoji sačuvan original (slika je isecana): rotiraj original i vrati ceo kadar
+  const o = path.join(ORIG, file);
+  if (existsSync(o)) {
+    const rotated = await sharp(await fs.readFile(o)).rotate(deg).jpeg({ quality: 92, mozjpeg: true }).toBuffer();
+    await fs.writeFile(o, rotated);
+    const size = await writeBoth(sharp(rotated), file);
+    console.log(`↻ ${file} ${deg}° (iz originala)`);
+    return res.json(size);
+  }
   let size = { w: 0, h: 0 };
   for (const [dir, q] of [
     [FULL, 82],

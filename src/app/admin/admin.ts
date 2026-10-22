@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Data, thumbUrl } from '../core/data';
 import { Content, Country, Photo, SiteText } from '../core/models';
 import { PhotoView } from '../shared/photo';
+import { Cropper, Cut } from './cropper';
 
 type Tab = 'photos' | 'countries' | 'texts';
 
@@ -27,7 +28,7 @@ function slug(s: string): string {
 @Component({
   selector: 'app-admin',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, CdkDropList, CdkDrag, CdkDragPlaceholder, PhotoView],
+  imports: [RouterLink, CdkDropList, CdkDrag, CdkDragPlaceholder, PhotoView, Cropper],
   host: { '(document:keydown)': 'onKey($event)', '(window:beforeunload)': 'beforeUnload($event)' },
   templateUrl: './admin.html',
   styleUrl: './admin.scss',
@@ -50,6 +51,8 @@ export class Admin {
   readonly upCountry = signal('');
   readonly upPlaceSr = signal('');
   readonly upPlaceEn = signal('');
+  readonly upArea = signal('');
+  readonly allAreas = computed(() => [...new Set(this.photos().map((p) => p.area?.sr).filter((a): a is string => !!a))].sort());
   readonly upFiles = signal<File[]>([]);
   readonly dragOver = signal(false);
 
@@ -86,6 +89,17 @@ export class Admin {
     if (!s) return [];
     return [...new Set(this.photos().filter((p) => p.country === s.country).map((p) => p.place.sr))].sort();
   });
+
+  /** delovi mesta (opštine) koji već postoje za isto mesto — za brzi izbor */
+  readonly areasOfSelected = computed(() => {
+    const s = this.selected();
+    if (!s) return [];
+    const same = this.photos().filter((p) => p.country === s.country && p.place.sr === s.place.sr && p.area?.sr);
+    return [...new Set(same.map((p) => p.area!.sr))].sort();
+  });
+
+  /** da li je otvoren alat za ručno isecanje (zatvara se kad izabereš drugu sliku) */
+  readonly cropping = linkedSignal({ source: () => this.selectedId(), computation: () => false });
 
   constructor() {
     this.reload();
@@ -182,6 +196,25 @@ export class Admin {
     this.updatePhoto(id, { place });
   }
 
+  updateArea(id: string, lang: 'sr' | 'en', value: string): void {
+    const p = this.photos().find((x) => x.id === id);
+    if (!p) return;
+    value = value.trim();
+    if (lang === 'sr' && !value) {
+      const { area: _a, ...rest } = p;
+      this.patch((c) => ({ ...c, photos: c.photos.map((x) => (x.id === id ? (rest as Photo) : x)) }));
+      return;
+    }
+    const old = p.area ?? { sr: '', en: '' };
+    const area = { ...old, [lang]: value };
+    if (lang === 'sr') {
+      // ako ista opština već postoji na drugoj slici, preuzmi njen engleski naziv
+      const known = this.photos().find((x) => x.id !== id && x.area?.sr === value)?.area?.en;
+      if (!old.en || old.en === old.sr) area.en = known || value;
+    }
+    this.updatePhoto(id, { area });
+  }
+
   updateSite(ch: Partial<SiteText>): void {
     this.patch((c) => ({ ...c, site: { ...c.site, ...ch } }));
   }
@@ -230,10 +263,42 @@ export class Admin {
       });
       const s = await r.json();
       if (!r.ok) throw new Error(s.error);
-      this.updatePhoto(p.id, { w: s.w, h: s.h, v: (p.v || 1) + 1, crop: { x: 50, y: 50, zoom: 1 } });
+      const { cut: _c, ...rest } = p;
+      this.patch((c) => ({
+        ...c,
+        photos: c.photos.map((x) => (x.id === p.id ? { ...rest, w: s.w, h: s.h, v: (p.v || 1) + 1, crop: { x: 50, y: 50, zoom: 1 } } : x)),
+      }));
       this.flash('info', 'Rotirano — ne zaboravi da sačuvaš.');
     } catch (e) {
       this.flash('err', 'Rotacija nije uspela: ' + (e as Error).message);
+    } finally {
+      this.busy.set(false);
+    }
+  }
+
+  async applyCut(p: Photo, cut: Cut): Promise<void> {
+    await this.cutCall(p, '/api/crop', { file: p.file, ...cut }, cut);
+  }
+
+  async uncut(p: Photo): Promise<void> {
+    await this.cutCall(p, '/api/uncrop', { file: p.file }, undefined);
+  }
+
+  private async cutCall(p: Photo, url: string, body: object, cut: Cut | undefined): Promise<void> {
+    if (this.serverDown()) return this.flash('err', 'Pokreni npm run admin');
+    this.busy.set(true);
+    try {
+      const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      const s = await r.json();
+      if (!r.ok) throw new Error(s.error);
+      const { cut: _old, ...rest } = p;
+      const next: Photo = { ...rest, w: s.w, h: s.h, v: (p.v || 1) + 1, crop: { x: 50, y: 50, zoom: 1 } };
+      if (cut) next.cut = cut;
+      this.patch((c) => ({ ...c, photos: c.photos.map((x) => (x.id === p.id ? next : x)) }));
+      this.cropping.set(false);
+      this.flash('info', cut ? 'Isečeno — ne zaboravi da sačuvaš.' : 'Vraćen ceo original — ne zaboravi da sačuvaš.');
+    } catch (e) {
+      this.flash('err', 'Nije uspelo: ' + (e as Error).message);
     } finally {
       this.busy.set(false);
     }
@@ -333,6 +398,8 @@ export class Admin {
       const res = (await r.json()) as { file?: string; w?: number; h?: number; error?: string }[];
       if (!r.ok) throw new Error((res as unknown as { error: string }).error);
       const en = this.upPlaceEn().trim() || knownEnglish(c, country, placeSr);
+      const areaSr = this.upArea().trim();
+      const areaEn = this.photos().find((p) => p.area?.sr === areaSr)?.area?.en || areaSr;
       const added: Photo[] = res
         .filter((x) => x.file)
         .map((x) => ({
@@ -345,6 +412,7 @@ export class Admin {
           crop: { x: 50, y: 50, zoom: 1 },
           tilt: Math.round((Math.random() * 3.2 - 1.6) * 10) / 10,
           v: 1,
+          ...(areaSr ? { area: { sr: areaSr, en: areaEn } } : {}),
         }));
       this.patch((cc) => ({ ...cc, photos: [...added, ...cc.photos] }));
       const errs = res.filter((x) => x.error).map((x) => x.error);

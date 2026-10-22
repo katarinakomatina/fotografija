@@ -6,6 +6,7 @@ import {
   computed,
   inject,
   input,
+  linkedSignal,
   output,
   signal,
 } from '@angular/core';
@@ -31,7 +32,7 @@ interface Item {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [PhotoView],
   template: `
-    @for (row of rows(); track $index) {
+    @for (row of visible(); track $index) {
       <div class="row" [style.gap.px]="gap()">
         @for (it of row; track it.photo.id) {
           <button
@@ -45,6 +46,11 @@ interface Item {
             <app-photo [photo]="it.photo" [ratio]="it.photo.w + ' / ' + it.photo.h" [eager]="it.index < eagerCount()" [alt]="it.label" />
           </button>
         }
+      </div>
+    }
+    @if (hidden() > 0) {
+      <div class="more">
+        <button type="button" class="btn ghost" (click)="more()">{{ i18n.t('showMore') }} ({{ hidden() }})</button>
       </div>
     }
   `,
@@ -80,6 +86,11 @@ interface Item {
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 18px 34px rgba(45, 36, 28, 0.3);
     }
+    .more {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
     @media (max-width: 700px) {
       .ph {
         outline-width: 3px;
@@ -89,14 +100,40 @@ interface Item {
   host: { '[style.--jgap.px]': 'gap()' },
 })
 export class Justified {
-  private readonly i18n = inject(I18n);
+  protected readonly i18n = inject(I18n);
   private readonly data = inject(Data);
 
   readonly photos = input.required<Photo[]>();
   readonly eagerCount = input(8);
   /** 'large' = veliki redovi (država), 'normal' = manji (sve fotografije) */
   readonly size = input<'large' | 'normal'>('large');
+  /** koliko slika (otprilike) prikazati odjednom; 0 = sve. Uvek se prikazuju celi redovi. */
+  readonly page = input(0);
   readonly open = output<number>();
+
+  /** koliko slika je "traženo" — raste klikom na "Prikaži još", vraća se na početak kad se promeni lista */
+  private readonly want = linkedSignal({ source: () => [this.photos(), this.page()] as const, computation: ([, pg]) => pg });
+
+  /** samo celi redovi: uzimamo redove dok ne pređemo traženi broj slika */
+  readonly visible = computed(() => {
+    const rows = this.rows();
+    const want = this.want();
+    if (!want) return rows;
+    const out: Item[][] = [];
+    let n = 0;
+    for (const r of rows) {
+      if (n >= want) break;
+      out.push(r);
+      n += r.length;
+    }
+    // ako bi ostao samo jedan red, prikaži i njega (bolje nego dugme za par slika)
+    return rows.length - out.length === 1 ? rows : out;
+  });
+  readonly hidden = computed(() => this.photos().length - this.visible().reduce((a, r) => a + r.length, 0));
+
+  more(): void {
+    this.want.set(this.visible().reduce((a, r) => a + r.length, 0) + this.page());
+  }
 
   private readonly width = signal(0);
   readonly gap = computed(() => (this.width() < 700 ? 10 : 18));
@@ -112,7 +149,8 @@ export class Justified {
     let sum = 0;
     const label = (p: Photo) => {
       const c = this.data.country(p.country);
-      return this.i18n.pick(p.place) + (c ? ', ' + this.i18n.pick(c.name) : '');
+      const a = p.area?.sr ? this.i18n.pick(p.area) + ', ' : '';
+      return a + this.i18n.pick(p.place) + (c ? ', ' + this.i18n.pick(c.name) : '');
     };
     const flush = (h: number) => {
       rows.push(row.map((r) => ({ photo: r.p, index: r.i, w: Math.floor(r.ar * h), h: Math.round(h), label: label(r.p) })));

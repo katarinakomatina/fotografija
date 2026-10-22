@@ -18,6 +18,10 @@ export interface Photo {
   file: string;
   country: string;
   place: Text;
+  /** deo mesta, npr. opština u Beogradu (nije obavezno) */
+  area?: Text;
+  /** ručni isečak iz admina (delovi originala 0–1); fajl je već isečen, ovo služi da se okvir ponovo prikaže */
+  cut?: { x: number; y: number; w: number; h: number };
   w: number;
   h: number;
   crop: Crop;
