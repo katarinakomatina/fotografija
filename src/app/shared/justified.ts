@@ -102,7 +102,7 @@ export class Justified {
   readonly rows = computed<Item[][]>(() => {
     const W = this.width();
     if (!W) return [];
-    const target = W < 520 ? 150 : W < 900 ? 210 : 290;
+    const target = W < 520 ? 260 : W < 900 ? 380 : 600;
     const gap = this.gap();
     const rows: Item[][] = [];
     let row: { p: Photo; i: number; ar: number }[] = [];
