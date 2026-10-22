@@ -346,21 +346,21 @@
    "featured": false
   },
   {
-   "id": "srbija-tara-01",
-   "file": "srbija-tara-01.jpg",
+   "id": "srbija-beograd-02",
+   "file": "srbija-beograd-02.jpg",
    "country": "srbija",
    "place": {
-    "sr": "Tara",
-    "en": "Tara Mountain"
+    "sr": "Beograd",
+    "en": "Belgrade"
    },
-   "w": 1080,
-   "h": 1312,
+   "w": 2000,
+   "h": 1124,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": 0.1,
+   "tilt": 1.4,
    "v": 1,
    "featured": true
   },
@@ -380,6 +380,25 @@
     "zoom": 1
    },
    "tilt": -1.5,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "srbija-tara-01",
+   "file": "srbija-tara-01.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Tara",
+    "en": "Tara Mountain"
+   },
+   "w": 1080,
+   "h": 1312,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.1,
    "v": 1,
    "featured": true
   },
@@ -418,25 +437,6 @@
     "zoom": 1
    },
    "tilt": -1.5,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "srbija-zagajicka-brda-03",
-   "file": "srbija-zagajicka-brda-03.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Zagajička brda",
-    "en": "Zagajica Hills"
-   },
-   "w": 2000,
-   "h": 1215,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1,
    "v": 1,
    "featured": true
   },
@@ -590,21 +590,21 @@
    "v": 1
   },
   {
-   "id": "srbija-beograd-40",
-   "file": "srbija-beograd-40.jpg",
+   "id": "srbija-zagajicka-brda-03",
+   "file": "srbija-zagajicka-brda-03.jpg",
    "country": "srbija",
    "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
+    "sr": "Zagajička brda",
+    "en": "Zagajica Hills"
    },
-   "w": 1894,
-   "h": 2000,
+   "w": 2000,
+   "h": 1215,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -0.8,
+   "tilt": -1,
    "v": 1,
    "featured": true
   },
@@ -754,42 +754,41 @@
    "v": 1
   },
   {
-   "id": "srbija-vrnjacka-banja-05",
-   "file": "srbija-vrnjacka-banja-05.jpg",
+   "id": "srbija-beograd-40",
+   "file": "srbija-beograd-40.jpg",
    "country": "srbija",
    "place": {
-    "sr": "Vrnjačka Banja",
-    "en": "Vrnjačka Banja"
+    "sr": "Beograd",
+    "en": "Belgrade"
    },
-   "w": 1125,
+   "w": 1894,
    "h": 2000,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": 0.1,
+   "tilt": -0.8,
    "v": 1,
    "featured": true
   },
   {
-   "id": "srbija-beograd-02",
-   "file": "srbija-beograd-02.jpg",
+   "id": "srbija-tara-08",
+   "file": "srbija-tara-08.jpg",
    "country": "srbija",
    "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
+    "sr": "Tara",
+    "en": "Tara Mountain"
    },
    "w": 2000,
-   "h": 1124,
+   "h": 1333,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": 1.4,
-   "v": 1,
-   "featured": true
+   "tilt": 0.9,
+   "v": 1
   },
   {
    "id": "bosna-i-hercegovina-trebinje-03",
@@ -901,6 +900,25 @@
    "v": 1
   },
   {
+   "id": "srbija-vrnjacka-banja-05",
+   "file": "srbija-vrnjacka-banja-05.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Vrnjačka Banja",
+    "en": "Vrnjačka Banja"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.1,
+   "v": 1,
+   "featured": true
+  },
+  {
    "id": "srbija-beograd-05",
    "file": "srbija-beograd-05.jpg",
    "country": "srbija",
@@ -918,24 +936,6 @@
    "tilt": -1.4,
    "v": 1,
    "featured": true
-  },
-  {
-   "id": "srbija-beograd-51",
-   "file": "srbija-beograd-51.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 744,
-   "h": 1322,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1.3,
-   "v": 1
   },
   {
    "id": "hrvatska-dubrovnik-04",
@@ -1028,6 +1028,24 @@
    "v": 1
   },
   {
+   "id": "srbija-beograd-51",
+   "file": "srbija-beograd-51.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 744,
+   "h": 1322,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.3,
+   "v": 1
+  },
+  {
    "id": "srbija-novi-sad-02",
    "file": "srbija-novi-sad-02.jpg",
    "country": "srbija",
@@ -1044,25 +1062,6 @@
    },
    "tilt": -0.5,
    "v": 1
-  },
-  {
-   "id": "srbija-kopaonik-05",
-   "file": "srbija-kopaonik-05.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Kopaonik",
-    "en": "Kopaonik"
-   },
-   "w": 1132,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.1,
-   "v": 1,
-   "featured": true
   },
   {
    "id": "hrvatska-dubrovnik-06",
@@ -1157,6 +1156,25 @@
    "featured": true
   },
   {
+   "id": "srbija-kopaonik-05",
+   "file": "srbija-kopaonik-05.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Kopaonik",
+    "en": "Kopaonik"
+   },
+   "w": 1132,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.1,
+   "v": 1,
+   "featured": true
+  },
+  {
    "id": "srbija-vrsac-05",
    "file": "srbija-vrsac-05.jpg",
    "country": "srbija",
@@ -1172,25 +1190,6 @@
     "zoom": 1
    },
    "tilt": -0.2,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "srbija-beograd-25",
-   "file": "srbija-beograd-25.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 960,
-   "h": 640,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.2,
    "v": 1,
    "featured": true
   },
@@ -1286,6 +1285,25 @@
    "featured": true
   },
   {
+   "id": "srbija-beograd-25",
+   "file": "srbija-beograd-25.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 960,
+   "h": 640,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.2,
+   "v": 1,
+   "featured": true
+  },
+  {
    "id": "srbija-zrenjanin-03",
    "file": "srbija-zrenjanin-03.jpg",
    "country": "srbija",
@@ -1301,25 +1319,6 @@
     "zoom": 1
    },
    "tilt": -1,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "srbija-zrenjanin-02",
-   "file": "srbija-zrenjanin-02.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Zrenjanin",
-    "en": "Zrenjanin"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.1,
    "v": 1,
    "featured": true
   },
@@ -1396,6 +1395,25 @@
    "v": 1
   },
   {
+   "id": "srbija-zrenjanin-02",
+   "file": "srbija-zrenjanin-02.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Zrenjanin",
+    "en": "Zrenjanin"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.1,
+   "v": 1,
+   "featured": true
+  },
+  {
    "id": "srbija-valjevo-02",
    "file": "srbija-valjevo-02.jpg",
    "country": "srbija",
@@ -1413,24 +1431,6 @@
    "tilt": -0.5,
    "v": 1,
    "featured": true
-  },
-  {
-   "id": "srbija-vrnjacka-banja-01",
-   "file": "srbija-vrnjacka-banja-01.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Vrnjačka Banja",
-    "en": "Vrnjačka Banja"
-   },
-   "w": 1126,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1,
-   "v": 1
   },
   {
    "id": "hrvatska-dubrovnik-09",
@@ -1506,6 +1506,24 @@
    "v": 1
   },
   {
+   "id": "srbija-vrnjacka-banja-01",
+   "file": "srbija-vrnjacka-banja-01.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Vrnjačka Banja",
+    "en": "Vrnjačka Banja"
+   },
+   "w": 1126,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1,
+   "v": 1
+  },
+  {
    "id": "srbija-smederevo-01",
    "file": "srbija-smederevo-01.jpg",
    "country": "srbija",
@@ -1521,24 +1539,6 @@
     "zoom": 1
    },
    "tilt": -0.1,
-   "v": 1
-  },
-  {
-   "id": "srbija-vrnjacka-banja-04",
-   "file": "srbija-vrnjacka-banja-04.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Vrnjačka Banja",
-    "en": "Vrnjačka Banja"
-   },
-   "w": 1600,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.9,
    "v": 1
   },
   {
@@ -1579,6 +1579,24 @@
    "v": 1
   },
   {
+   "id": "srbija-vrnjacka-banja-04",
+   "file": "srbija-vrnjacka-banja-04.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Vrnjačka Banja",
+    "en": "Vrnjačka Banja"
+   },
+   "w": 1600,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.9,
+   "v": 1
+  },
+  {
    "id": "srbija-beograd-29",
    "file": "srbija-beograd-29.jpg",
    "country": "srbija",
@@ -1594,25 +1612,6 @@
     "zoom": 1
    },
    "tilt": -0.7,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "srbija-tara-06",
-   "file": "srbija-tara-06.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Tara",
-    "en": "Tara Mountain"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.4,
    "v": 1,
    "featured": true
   },
@@ -1635,6 +1634,25 @@
    "v": 1
   },
   {
+   "id": "srbija-tara-06",
+   "file": "srbija-tara-06.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Tara",
+    "en": "Tara Mountain"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.4,
+   "v": 1,
+   "featured": true
+  },
+  {
    "id": "srbija-beograd-55",
    "file": "srbija-beograd-55.jpg",
    "country": "srbija",
@@ -1654,24 +1672,6 @@
    "featured": true
   },
   {
-   "id": "srbija-zagajicka-brda-01",
-   "file": "srbija-zagajicka-brda-01.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Zagajička brda",
-    "en": "Zagajica Hills"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.9,
-   "v": 1
-  },
-  {
    "id": "rumunija-nera-12",
    "file": "rumunija-nera-12.jpg",
    "country": "rumunija",
@@ -1687,6 +1687,24 @@
     "zoom": 1
    },
    "tilt": -0.8,
+   "v": 1
+  },
+  {
+   "id": "srbija-zagajicka-brda-01",
+   "file": "srbija-zagajicka-brda-01.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Zagajička brda",
+    "en": "Zagajica Hills"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.9,
    "v": 1
   },
   {
@@ -1709,6 +1727,24 @@
    "featured": true
   },
   {
+   "id": "rumunija-nera-13",
+   "file": "rumunija-nera-13.jpg",
+   "country": "rumunija",
+   "place": {
+    "sr": "Nera",
+    "en": "Nera Gorge"
+   },
+   "w": 2000,
+   "h": 1333,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.2,
+   "v": 1
+  },
+  {
    "id": "srbija-smederevo-03",
    "file": "srbija-smederevo-03.jpg",
    "country": "srbija",
@@ -1726,24 +1762,6 @@
    "tilt": -1.3,
    "v": 1,
    "featured": true
-  },
-  {
-   "id": "rumunija-nera-13",
-   "file": "rumunija-nera-13.jpg",
-   "country": "rumunija",
-   "place": {
-    "sr": "Nera",
-    "en": "Nera Gorge"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.2,
-   "v": 1
   },
   {
    "id": "srbija-krupajsko-vrelo-01",
@@ -1765,24 +1783,6 @@
    "featured": true
   },
   {
-   "id": "srbija-bajina-basta-01",
-   "file": "srbija-bajina-basta-01.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Bajina Bašta",
-    "en": "Bajina Bašta"
-   },
-   "w": 1144,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.3,
-   "v": 1
-  },
-  {
    "id": "rumunija-temisvar-01",
    "file": "rumunija-temisvar-01.jpg",
    "country": "rumunija",
@@ -1801,21 +1801,21 @@
    "v": 1
   },
   {
-   "id": "srbija-divcibare-01",
-   "file": "srbija-divcibare-01.jpg",
+   "id": "srbija-bajina-basta-01",
+   "file": "srbija-bajina-basta-01.jpg",
    "country": "srbija",
    "place": {
-    "sr": "Divčibare",
-    "en": "Divčibare"
+    "sr": "Bajina Bašta",
+    "en": "Bajina Bašta"
    },
-   "w": 1125,
+   "w": 1144,
    "h": 2000,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -1.4,
+   "tilt": 0.3,
    "v": 1
   },
   {
@@ -1837,6 +1837,24 @@
    "v": 1
   },
   {
+   "id": "srbija-divcibare-01",
+   "file": "srbija-divcibare-01.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Divčibare",
+    "en": "Divčibare"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.4,
+   "v": 1
+  },
+  {
    "id": "srbija-novi-sad-01",
    "file": "srbija-novi-sad-01.jpg",
    "country": "srbija",
@@ -1852,24 +1870,6 @@
     "zoom": 1
    },
    "tilt": -0.8,
-   "v": 1
-  },
-  {
-   "id": "srbija-sremski-karlovci-01",
-   "file": "srbija-sremski-karlovci-01.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Sremski Karlovci",
-    "en": "Sremski Karlovci"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1.1,
    "v": 1
   },
   {
@@ -1892,57 +1892,21 @@
    "featured": true
   },
   {
-   "id": "srbija-veliki-buk-01",
-   "file": "srbija-veliki-buk-01.jpg",
+   "id": "srbija-sremski-karlovci-01",
+   "file": "srbija-sremski-karlovci-01.jpg",
    "country": "srbija",
    "place": {
-    "sr": "Veliki Buk",
-    "en": "Veliki Buk Waterfall"
+    "sr": "Sremski Karlovci",
+    "en": "Sremski Karlovci"
    },
-   "w": 1126,
+   "w": 1125,
    "h": 2000,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": 1.6,
-   "v": 1
-  },
-  {
-   "id": "srbija-nis-01",
-   "file": "srbija-nis-01.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Niš",
-    "en": "Niš"
-   },
-   "w": 1333,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.1,
-   "v": 1
-  },
-  {
-   "id": "rumunija-temisvar-04",
-   "file": "rumunija-temisvar-04.jpg",
-   "country": "rumunija",
-   "place": {
-    "sr": "Temišvar",
-    "en": "Timișoara"
-   },
-   "w": 1126,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.7,
+   "tilt": 1.1,
    "v": 1
   },
   {
@@ -1965,6 +1929,24 @@
    "featured": false
   },
   {
+   "id": "rumunija-temisvar-04",
+   "file": "rumunija-temisvar-04.jpg",
+   "country": "rumunija",
+   "place": {
+    "sr": "Temišvar",
+    "en": "Timișoara"
+   },
+   "w": 1126,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.7,
+   "v": 1
+  },
+  {
    "id": "srbija-topola-01",
    "file": "srbija-topola-01.jpg",
    "country": "srbija",
@@ -1980,6 +1962,24 @@
     "zoom": 1
    },
    "tilt": 0.1,
+   "v": 1
+  },
+  {
+   "id": "srbija-zagajicka-brda-02",
+   "file": "srbija-zagajicka-brda-02.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Zagajička brda",
+    "en": "Zagajica Hills"
+   },
+   "w": 2000,
+   "h": 1125,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.9,
    "v": 1
   },
   {
@@ -2019,21 +2019,21 @@
    "v": 1
   },
   {
-   "id": "srbija-tara-02",
-   "file": "srbija-tara-02.jpg",
+   "id": "srbija-beograd-57",
+   "file": "srbija-beograd-57.jpg",
    "country": "srbija",
    "place": {
-    "sr": "Tara",
-    "en": "Tara Mountain"
+    "sr": "Beograd",
+    "en": "Belgrade"
    },
-   "w": 1637,
-   "h": 2000,
+   "w": 1080,
+   "h": 702,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": 1.5,
+   "tilt": -1.3,
    "v": 1
   },
   {
@@ -2055,6 +2055,78 @@
    "v": 1
   },
   {
+   "id": "srbija-zrenjanin-04",
+   "file": "srbija-zrenjanin-04.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Zrenjanin",
+    "en": "Zrenjanin"
+   },
+   "w": 2000,
+   "h": 1333,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.9,
+   "v": 1
+  },
+  {
+   "id": "srbija-beograd-26",
+   "file": "srbija-beograd-26.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 1628,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.2,
+   "v": 1
+  },
+  {
+   "id": "rumunija-temisvar-07",
+   "file": "rumunija-temisvar-07.jpg",
+   "country": "rumunija",
+   "place": {
+    "sr": "Temišvar",
+    "en": "Timișoara"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.3,
+   "v": 1
+  },
+  {
+   "id": "srbija-tara-02",
+   "file": "srbija-tara-02.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Tara",
+    "en": "Tara Mountain"
+   },
+   "w": 1637,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.5,
+   "v": 1
+  },
+  {
    "id": "srbija-vrnjacka-banja-02",
    "file": "srbija-vrnjacka-banja-02.jpg",
    "country": "srbija",
@@ -2070,6 +2142,42 @@
     "zoom": 1
    },
    "tilt": 1,
+   "v": 1
+  },
+  {
+   "id": "rumunija-temisvar-08",
+   "file": "rumunija-temisvar-08.jpg",
+   "country": "rumunija",
+   "place": {
+    "sr": "Temišvar",
+    "en": "Timișoara"
+   },
+   "w": 1267,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.8,
+   "v": 1
+  },
+  {
+   "id": "srbija-veliki-buk-01",
+   "file": "srbija-veliki-buk-01.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Veliki Buk",
+    "en": "Veliki Buk Waterfall"
+   },
+   "w": 1126,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.6,
    "v": 1
   },
   {
@@ -2091,21 +2199,21 @@
    "v": 1
   },
   {
-   "id": "rumunija-temisvar-07",
-   "file": "rumunija-temisvar-07.jpg",
-   "country": "rumunija",
+   "id": "srbija-nis-01",
+   "file": "srbija-nis-01.jpg",
+   "country": "srbija",
    "place": {
-    "sr": "Temišvar",
-    "en": "Timișoara"
+    "sr": "Niš",
+    "en": "Niš"
    },
-   "w": 1125,
+   "w": 1333,
    "h": 2000,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -0.3,
+   "tilt": -1.1,
    "v": 1
   },
   {
@@ -2145,60 +2253,6 @@
    "v": 1
   },
   {
-   "id": "rumunija-temisvar-08",
-   "file": "rumunija-temisvar-08.jpg",
-   "country": "rumunija",
-   "place": {
-    "sr": "Temišvar",
-    "en": "Timișoara"
-   },
-   "w": 1267,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.8,
-   "v": 1
-  },
-  {
-   "id": "srbija-zrenjanin-04",
-   "file": "srbija-zrenjanin-04.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Zrenjanin",
-    "en": "Zrenjanin"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.9,
-   "v": 1
-  },
-  {
-   "id": "srbija-zagajicka-brda-02",
-   "file": "srbija-zagajicka-brda-02.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Zagajička brda",
-    "en": "Zagajica Hills"
-   },
-   "w": 2000,
-   "h": 1125,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.9,
-   "v": 1
-  },
-  {
    "id": "srbija-bajina-basta-02",
    "file": "srbija-bajina-basta-02.jpg",
    "country": "srbija",
@@ -2214,24 +2268,6 @@
     "zoom": 1
    },
    "tilt": 0.3,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-26",
-   "file": "srbija-beograd-26.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1628,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1.2,
    "v": 1
   },
   {
@@ -2612,24 +2648,6 @@
     "zoom": 1
    },
    "tilt": -1.3,
-   "v": 1
-  },
-  {
-   "id": "srbija-subotica-04",
-   "file": "srbija-subotica-04.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Subotica",
-    "en": "Subotica"
-   },
-   "w": 1126,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.1,
    "v": 1
   },
   {
@@ -3067,24 +3085,6 @@
    "v": 1
   },
   {
-   "id": "srbija-tara-08",
-   "file": "srbija-tara-08.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Tara",
-    "en": "Tara Mountain"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.9,
-   "v": 1
-  },
-  {
    "id": "srbija-vrnjacka-banja-08",
    "file": "srbija-vrnjacka-banja-08.jpg",
    "country": "srbija",
@@ -3518,6 +3518,24 @@
    "featured": false
   },
   {
+   "id": "srbija-subotica-04",
+   "file": "srbija-subotica-04.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Subotica",
+    "en": "Subotica"
+   },
+   "w": 1126,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.1,
+   "v": 1
+  },
+  {
    "id": "srbija-beograd-34",
    "file": "srbija-beograd-34.jpg",
    "country": "srbija",
@@ -3731,24 +3749,6 @@
     "zoom": 1
    },
    "tilt": -0.3,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-57",
-   "file": "srbija-beograd-57.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1080,
-   "h": 702,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.3,
    "v": 1
   },
   {
