@@ -94,6 +94,8 @@ export class Justified {
 
   readonly photos = input.required<Photo[]>();
   readonly eagerCount = input(8);
+  /** 'large' = veliki redovi (država), 'normal' = manji (sve fotografije) */
+  readonly size = input<'large' | 'normal'>('large');
   readonly open = output<number>();
 
   private readonly width = signal(0);
@@ -102,7 +104,8 @@ export class Justified {
   readonly rows = computed<Item[][]>(() => {
     const W = this.width();
     if (!W) return [];
-    const target = W < 520 ? 260 : W < 900 ? 380 : 600;
+    const target =
+      this.size() === 'large' ? (W < 520 ? 260 : W < 900 ? 380 : 600) : W < 520 ? 170 : W < 900 ? 230 : 300;
     const gap = this.gap();
     const rows: Item[][] = [];
     let row: { p: Photo; i: number; ar: number }[] = [];

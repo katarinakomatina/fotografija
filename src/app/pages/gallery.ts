@@ -41,7 +41,7 @@ const PAGE = 32;
       @if (current()) {
         <app-place-chips class="pchips" [photos]="countryPhotos()" [selected]="place()" (pick)="place.set($event)" />
       }
-      <app-justified [photos]="shown()" (open)="open($event)" />
+      <app-justified [photos]="shown()" [size]="current() ? 'large' : 'normal'" (open)="open($event)" />
       @if (shown().length < list().length) {
         <div class="more">
           <button type="button" class="btn ghost" (click)="limit.set(limit() + PAGE)">
