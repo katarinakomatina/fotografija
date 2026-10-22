@@ -346,21 +346,21 @@
    "featured": false
   },
   {
-   "id": "srbija-beograd-02",
-   "file": "srbija-beograd-02.jpg",
+   "id": "srbija-beograd-40",
+   "file": "srbija-beograd-40.jpg",
    "country": "srbija",
    "place": {
     "sr": "Beograd",
     "en": "Belgrade"
    },
-   "w": 2000,
-   "h": 1124,
+   "w": 1894,
+   "h": 2000,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": 1.4,
+   "tilt": -0.8,
    "v": 1,
    "featured": true
   },
@@ -754,25 +754,6 @@
    "v": 1
   },
   {
-   "id": "srbija-beograd-40",
-   "file": "srbija-beograd-40.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1894,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.8,
-   "v": 1,
-   "featured": true
-  },
-  {
    "id": "srbija-tara-08",
    "file": "srbija-tara-08.jpg",
    "country": "srbija",
@@ -789,6 +770,25 @@
    },
    "tilt": 0.9,
    "v": 1
+  },
+  {
+   "id": "srbija-beograd-02",
+   "file": "srbija-beograd-02.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 2000,
+   "h": 1124,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.4,
+   "v": 1,
+   "featured": true
   },
   {
    "id": "bosna-i-hercegovina-trebinje-03",
