@@ -639,3 +639,74 @@ summary {
     grid-template-columns: 1fr;
   }
 }
+
+/* mesta i opštine ispod izabrane države */
+.subs {
+  margin: 0 0 6px 14px;
+  padding-left: 8px;
+  border-left: 1px dashed var(--a-line);
+}
+.ctry.sub {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 13px;
+}
+.ctry.sub.empty:not(.on) {
+  opacity: 0.45;
+}
+.ctry.sub.none:not(.on) {
+  font-style: italic;
+}
+
+/* označavanje više slika */
+.cell {
+  position: relative;
+}
+.pick {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+.pick.on {
+  background: var(--a-ink);
+  border-color: var(--a-ink);
+}
+.bulk {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: #fffdf8;
+  border: 1px solid var(--a-line);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+.bulk input {
+  width: 180px;
+}
+.link {
+  padding: 0;
+  border: 0;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}

@@ -25,6 +25,30 @@ function slug(s: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+/** Opštine Beograda — u adminu se vide uvek (i prazne), posetioci vide samo one koje imaju slike */
+const KNOWN_AREAS: Record<string, [string, string][]> = {
+  Beograd: [
+    ['Barajevo', 'Barajevo'],
+    ['Voždovac', 'Voždovac'],
+    ['Vračar', 'Vračar'],
+    ['Grocka', 'Grocka'],
+    ['Zvezdara', 'Zvezdara'],
+    ['Zemun', 'Zemun'],
+    ['Lazarevac', 'Lazarevac'],
+    ['Mladenovac', 'Mladenovac'],
+    ['Novi Beograd', 'New Belgrade'],
+    ['Obrenovac', 'Obrenovac'],
+    ['Palilula', 'Palilula'],
+    ['Rakovica', 'Rakovica'],
+    ['Savski venac', 'Savski Venac'],
+    ['Sopot', 'Sopot'],
+    ['Stari grad', 'Stari Grad'],
+    ['Surčin', 'Surčin'],
+    ['Čukarica', 'Čukarica'],
+  ],
+};
+const NONE = '__bez__';
+
 @Component({
   selector: 'app-admin',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,6 +58,7 @@ function slug(s: string): string {
   styleUrl: './admin.scss',
 })
 export class Admin {
+  protected readonly NONE = NONE;
   private readonly data = inject(Data);
 
   readonly content = signal<Content | null>(null);
@@ -46,6 +71,12 @@ export class Admin {
   readonly tab = signal<Tab>('photos');
   readonly filter = signal('');
   readonly selectedId = signal('');
+  /** filter po mestu i delu mesta (vraćaju se na "sve" kad promeniš državu / mesto) */
+  readonly placeFilter = linkedSignal({ source: this.filter, computation: () => '' });
+  readonly areaFilter = linkedSignal({ source: this.placeFilter, computation: () => '' });
+  /** slike označene kvadratićem (za dodelu opštine više slika odjednom) */
+  readonly picked = signal<ReadonlySet<string>>(new Set());
+  readonly bulkArea = signal('');
 
   // dodavanje
   readonly upCountry = signal('');
@@ -67,8 +98,37 @@ export class Admin {
 
   readonly visible = computed(() => {
     const f = this.filter();
-    return f ? this.photos().filter((p) => p.country === f) : this.photos();
+    const pl = this.placeFilter();
+    const a = this.areaFilter();
+    return this.photos().filter(
+      (p) =>
+        (!f || p.country === f) &&
+        (!pl || p.place.sr === pl) &&
+        (!a || (a === NONE ? !p.area?.sr : p.area?.sr === a)),
+    );
   });
+
+  /** mesta u izabranoj državi, sa brojem slika */
+  readonly placeList = computed(() => {
+    const f = this.filter();
+    if (!f) return [];
+    const m = new Map<string, number>();
+    for (const p of this.photos()) if (p.country === f) m.set(p.place.sr, (m.get(p.place.sr) ?? 0) + 1);
+    return [...m].map(([name, n]) => ({ name, n })).sort((a, b) => b.n - a.n || a.name.localeCompare(b.name));
+  });
+
+  /** delovi izabranog mesta: poznate opštine (i prazne) + one koje si sama upisala */
+  readonly areaList = computed(() => {
+    const pl = this.placeFilter();
+    if (!pl) return [];
+    const inPlace = this.photos().filter((p) => p.country === this.filter() && p.place.sr === pl);
+    const m = new Map<string, number>((KNOWN_AREAS[pl] ?? []).map(([sr]) => [sr, 0]));
+    for (const p of inPlace) if (p.area?.sr) m.set(p.area.sr, (m.get(p.area.sr) ?? 0) + 1);
+    return [...m].map(([name, n]) => ({ name, n })).sort((a, b) => a.name.localeCompare(b.name, 'sr-Latn'));
+  });
+  readonly noAreaCount = computed(
+    () => this.photos().filter((p) => p.country === this.filter() && p.place.sr === this.placeFilter() && !p.area?.sr).length,
+  );
 
   readonly selected = computed(() => this.photos().find((p) => p.id === this.selectedId()));
   readonly selectedIndex = computed(() => this.photos().findIndex((p) => p.id === this.selectedId()));
@@ -94,9 +154,64 @@ export class Admin {
   readonly areasOfSelected = computed(() => {
     const s = this.selected();
     if (!s) return [];
-    const same = this.photos().filter((p) => p.country === s.country && p.place.sr === s.place.sr && p.area?.sr);
-    return [...new Set(same.map((p) => p.area!.sr))].sort();
+    return this.areaOptions(s.place.sr);
   });
+
+  /** predlozi opština za neko mesto (poznate + već upisane) */
+  areaOptions(place: string): string[] {
+    const used = this.photos().filter((p) => p.place.sr === place && p.area?.sr).map((p) => p.area!.sr);
+    return [...new Set([...(KNOWN_AREAS[place] ?? []).map(([sr]) => sr), ...used])].sort((a, b) => a.localeCompare(b, 'sr-Latn'));
+  }
+
+  /** opcije za grupnu dodelu: opštine mesta svih označenih slika */
+  readonly bulkOptions = computed(() => {
+    const ids = this.picked();
+    const places = new Set(this.photos().filter((p) => ids.has(p.id)).map((p) => p.place.sr));
+    return [...new Set([...places].flatMap((pl) => this.areaOptions(pl)))];
+  });
+
+  togglePick(id: string, e: Event): void {
+    e.stopPropagation();
+    const s = new Set(this.picked());
+    if (s.has(id)) s.delete(id);
+    else s.add(id);
+    this.picked.set(s);
+  }
+
+  clearPicked(): void {
+    this.picked.set(new Set());
+  }
+
+  pickAllVisible(): void {
+    this.picked.set(new Set(this.visible().map((p) => p.id)));
+  }
+
+  /** dodeli (ili ukloni, ako je prazno) opštinu svim označenim slikama */
+  bulkSetArea(value: string): void {
+    value = value.trim();
+    const ids = this.picked();
+    if (!ids.size) return;
+    this.patch((c) => ({
+      ...c,
+      photos: c.photos.map((p) => {
+        if (!ids.has(p.id)) return p;
+        const { area: _a, ...rest } = p;
+        return value ? { ...rest, area: { sr: value, en: this.areaEn(value, p.place.sr) } } : (rest as Photo);
+      }),
+    }));
+    this.flash('info', value ? `Opština "${value}" dodeljena na ${ids.size} slika — ne zaboravi da sačuvaš.` : `Opština uklonjena sa ${ids.size} slika.`);
+    this.picked.set(new Set());
+    this.bulkArea.set('');
+  }
+
+  /** engleski naziv opštine: iz spiska poznatih, ili sa neke druge slike, ili isti kao srpski */
+  private areaEn(sr: string, place: string): string {
+    return (
+      KNOWN_AREAS[place]?.find(([s]) => s === sr)?.[1] ??
+      this.photos().find((p) => p.area?.sr === sr && p.area.en)?.area?.en ??
+      sr
+    );
+  }
 
   /** da li je otvoren alat za ručno isecanje (zatvara se kad izabereš drugu sliku) */
   readonly cropping = linkedSignal({ source: () => this.selectedId(), computation: () => false });
@@ -208,9 +323,8 @@ export class Admin {
     const old = p.area ?? { sr: '', en: '' };
     const area = { ...old, [lang]: value };
     if (lang === 'sr') {
-      // ako ista opština već postoji na drugoj slici, preuzmi njen engleski naziv
-      const known = this.photos().find((x) => x.id !== id && x.area?.sr === value)?.area?.en;
-      if (!old.en || old.en === old.sr) area.en = known || value;
+      // engleski naziv: iz spiska poznatih opština ili sa druge slike
+      if (!old.en || old.en === old.sr) area.en = this.areaEn(value, p.place.sr);
     }
     this.updatePhoto(id, { area });
   }
@@ -399,7 +513,7 @@ export class Admin {
       if (!r.ok) throw new Error((res as unknown as { error: string }).error);
       const en = this.upPlaceEn().trim() || knownEnglish(c, country, placeSr);
       const areaSr = this.upArea().trim();
-      const areaEn = this.photos().find((p) => p.area?.sr === areaSr)?.area?.en || areaSr;
+      const areaEn = this.areaEn(areaSr, placeSr);
       const added: Photo[] = res
         .filter((x) => x.file)
         .map((x) => ({

@@ -42,9 +42,30 @@
           Sve države <span>{{ photos().length }}</span>
         </button>
         @for (c of countries(); track c.id) {
-          <button type="button" class="ctry" [class.on]="filter() === c.id" (click)="filter.set(c.id)">
+          <button type="button" class="ctry" [class.on]="filter() === c.id && !placeFilter()" (click)="filter.set(c.id); placeFilter.set('')">
             <span class="flag fi fi-{{ c.iso }}"></span> {{ c.name.sr }} <span>{{ counts().get(c.id) ?? 0 }}</span>
           </button>
+          @if (filter() === c.id) {
+            <div class="subs">
+              @for (pl of placeList(); track pl.name) {
+                <button type="button" class="ctry sub" [class.on]="placeFilter() === pl.name && !areaFilter()" (click)="placeFilter.set(pl.name); areaFilter.set('')">
+                  {{ pl.name }} <span>{{ pl.n }}</span>
+                </button>
+                @if (placeFilter() === pl.name && areaList().length) {
+                  <div class="subs">
+                    @for (a of areaList(); track a.name) {
+                      <button type="button" class="ctry sub" [class.on]="areaFilter() === a.name" [class.empty]="!a.n" (click)="areaFilter.set(a.name)">
+                        {{ a.name }} <span>{{ a.n }}</span>
+                      </button>
+                    }
+                    <button type="button" class="ctry sub none" [class.on]="areaFilter() === NONE" (click)="areaFilter.set(NONE)">
+                      Bez opštine <span>{{ noAreaCount() }}</span>
+                    </button>
+                  </div>
+                }
+              }
+            </div>
+          }
         }
 
         <div class="upload">
@@ -106,14 +127,39 @@
             Redosled unutar države se poštuje i u prikazu "Sve".
           }
         </p>
+        @if (picked().size) {
+          <div class="bulk">
+            <b>Označeno: {{ picked().size }}</b>
+            <span>Opština:</span>
+            <input [value]="bulkArea()" (input)="bulkArea.set(val($event))" list="bulk-areas" placeholder="npr. Zemun" (keydown.enter)="bulkSetArea(bulkArea())" />
+            <datalist id="bulk-areas">
+              @for (a of bulkOptions(); track a) {
+                <option [value]="a"></option>
+              }
+            </datalist>
+            <button type="button" class="primary" [disabled]="!bulkArea().trim()" (click)="bulkSetArea(bulkArea())">Dodeli</button>
+            <button type="button" (click)="bulkSetArea('')">Ukloni opštinu</button>
+            <button type="button" (click)="clearPicked()">Poništi izbor</button>
+          </div>
+        } @else if (placeFilter()) {
+          <p class="hint top">Označi slike kvadratićem u uglu (ili <button type="button" class="link" (click)="pickAllVisible()">označi sve prikazane</button>), pa im dodeli opštinu odjednom.</p>
+        }
         <div class="grid" cdkDropList cdkDropListOrientation="mixed" [cdkDropListData]="visible()" (cdkDropListDropped)="drop($event)">
           @for (p of visible(); track p.id; let i = $index) {
             <div class="cell" cdkDrag [cdkDragData]="p" [class.sel]="p.id === selectedId()" (click)="selectedId.set(p.id)">
               <div class="num">{{ i + 1 }}</div>
+              <button
+                type="button"
+                class="pick"
+                [class.on]="picked().has(p.id)"
+                (click)="togglePick(p.id, $event)"
+                (mousedown)="$event.stopPropagation()"
+                [attr.aria-label]="'Označi ' + p.file"
+              >{{ picked().has(p.id) ? '✓' : '' }}</button>
               <app-photo [photo]="p" />
               <div class="meta">
                 <span class="flag fi fi-{{ iso(p.country) }}"></span>
-                <span class="pl">{{ p.place.sr }}</span>
+                <span class="pl">{{ p.place.sr }}@if (p.area?.sr) { · {{ p.area!.sr }} }</span>
                 @if (p.featured) {
                   <span class="star" title="Izdvojeno">★</span>
                 }
