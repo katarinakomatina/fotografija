@@ -20,7 +20,6 @@ import { I18n } from '../core/i18n';
             }
             <span class="sig hand">Katarina Komatina ♡</span>
           </div>
-          <img class="deco p-flower" src="img/ukrasi/buket.webp" alt="" />
           <img class="deco p-stamp" src="img/ukrasi/marka.webp" alt="" />
         </div>
 

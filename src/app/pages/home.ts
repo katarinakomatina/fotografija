@@ -4,13 +4,12 @@ import { Data } from '../core/data';
 import { I18n } from '../core/i18n';
 import { PhotoView } from '../shared/photo';
 import { WorldMap } from '../shared/world-map';
-import { CountryList } from '../shared/country-list';
 import { LightboxService } from '../shared/lightbox';
 
 @Component({
   selector: 'app-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, PhotoView, WorldMap, CountryList],
+  imports: [RouterLink, PhotoView, WorldMap],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

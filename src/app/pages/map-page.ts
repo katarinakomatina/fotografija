@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { I18n } from '../core/i18n';
 import { WorldMap } from '../shared/world-map';
-import { CountryList } from '../shared/country-list';
 
 @Component({
   selector: 'app-map-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [WorldMap, CountryList],
+  imports: [WorldMap],
   template: `
     <section class="wrap page">
       <img class="deco m-plane" src="img/ukrasi/avion.webp" alt="" />
@@ -18,10 +17,6 @@ import { CountryList } from '../shared/country-list';
           <app-world-map />
           <span class="tape t1"></span>
           <span class="tape green t2"></span>
-        </div>
-        <div class="side">
-          <app-country-list />
-          <img class="deco m-seal" src="img/ukrasi/pecat-vosak.webp" alt="" />
         </div>
       </div>
     </section>
@@ -44,13 +39,16 @@ import { CountryList } from '../shared/country-list';
     }
     .grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
+      grid-template-columns: minmax(0, 1fr);
       gap: 36px;
       align-items: start;
       margin-top: 36px;
     }
     .mp {
       position: relative;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
       min-width: 0;
       padding: 16px;
     }
