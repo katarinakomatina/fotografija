@@ -251,42 +251,61 @@
    "featured": true
   },
   {
-   "id": "rumunija-nera-05",
-   "file": "rumunija-nera-05.jpg",
-   "country": "rumunija",
+   "id": "tunis-mahdija-01",
+   "file": "tunis-mahdija-01.jpg",
+   "country": "tunis",
    "place": {
-    "sr": "Nera",
-    "en": "Nera Gorge"
+    "sr": "Mahdija",
+    "en": "Mahdia"
    },
-   "w": 2000,
-   "h": 1333,
+   "w": 1312,
+   "h": 2000,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -0.2,
+   "tilt": -1.5,
    "v": 1,
-   "featured": false
+   "featured": true
   },
   {
-   "id": "grcka-meteori-02",
-   "file": "grcka-meteori-02.jpg",
-   "country": "grcka",
+   "id": "tunis-sus-02",
+   "file": "tunis-sus-02.jpg",
+   "country": "tunis",
    "place": {
-    "sr": "Meteori",
-    "en": "Meteora"
+    "sr": "Sus",
+    "en": "Sousse"
+   },
+   "w": 757,
+   "h": 1345,
+   "crop": {
+    "x": 50,
+    "y": 21.3,
+    "zoom": 1.23
+   },
+   "tilt": -0.4,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "srbija-tara-01",
+   "file": "srbija-tara-01.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Tara",
+    "en": "Tara Mountain"
    },
    "w": 1080,
-   "h": 1328,
+   "h": 1312,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -0.2,
+   "tilt": 0.1,
    "v": 1,
-   "featured": false
+   "featured": true
   },
   {
    "id": "srbija-kopaonik-01",
@@ -297,6 +316,124 @@
     "en": "Kopaonik"
    },
    "w": 1314,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.1,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "madjarska-budimpesta-10",
+   "file": "madjarska-budimpesta-10.jpg",
+   "country": "madjarska",
+   "place": {
+    "sr": "Budimpešta",
+    "en": "Budapest"
+   },
+   "w": 1300,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.2,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "grcka-atina-01",
+   "file": "grcka-atina-01.jpg",
+   "country": "grcka",
+   "place": {
+    "sr": "Atina",
+    "en": "Athens"
+   },
+   "w": 1080,
+   "h": 712,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.4,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "srbija-krupajsko-vrelo-02",
+   "file": "srbija-krupajsko-vrelo-02.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Krupajsko vrelo",
+    "en": "Krupaja Spring"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.5,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "srbija-beograd-02",
+   "file": "srbija-beograd-02.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 2000,
+   "h": 1124,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.4,
+   "v": 1,
+   "featured": true,
+   "area": {
+    "sr": "Stari grad",
+    "en": "Stari Grad"
+   }
+  },
+  {
+   "id": "rumunija-nera-01",
+   "file": "rumunija-nera-01.jpg",
+   "country": "rumunija",
+   "place": {
+    "sr": "Nera",
+    "en": "Nera Gorge"
+   },
+   "w": 1126,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.4,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "srbija-kopaonik-05",
+   "file": "srbija-kopaonik-05.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Kopaonik",
+    "en": "Kopaonik"
+   },
+   "w": 1132,
    "h": 2000,
    "crop": {
     "x": 50,
@@ -327,15 +464,15 @@
    "featured": true
   },
   {
-   "id": "madjarska-budimpesta-02",
-   "file": "madjarska-budimpesta-02.jpg",
-   "country": "madjarska",
+   "id": "slovenija-bledsko-jezero-01",
+   "file": "slovenija-bledsko-jezero-01.jpg",
+   "country": "slovenija",
    "place": {
-    "sr": "Budimpešta",
-    "en": "Budapest"
+    "sr": "Bledsko jezero",
+    "en": "Lake Bled"
    },
-   "w": 2000,
-   "h": 1333,
+   "w": 1080,
+   "h": 1279,
    "crop": {
     "x": 50,
     "y": 50,
@@ -343,7 +480,7 @@
    },
    "tilt": -1.1,
    "v": 1,
-   "featured": false
+   "featured": true
   },
   {
    "id": "srbija-vrnjacka-banja-03",
@@ -365,44 +502,6 @@
    "featured": true
   },
   {
-   "id": "tunis-mahdija-01",
-   "file": "tunis-mahdija-01.jpg",
-   "country": "tunis",
-   "place": {
-    "sr": "Mahdija",
-    "en": "Mahdia"
-   },
-   "w": 1312,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.5,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "srbija-tara-01",
-   "file": "srbija-tara-01.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Tara",
-    "en": "Tara Mountain"
-   },
-   "w": 1080,
-   "h": 1312,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.1,
-   "v": 1,
-   "featured": true
-  },
-  {
    "id": "srbija-vrnjacka-banja-05",
    "file": "srbija-vrnjacka-banja-05.jpg",
    "country": "srbija",
@@ -418,6 +517,43 @@
     "zoom": 1
    },
    "tilt": 0.1,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "srbija-novi-sad-02",
+   "file": "srbija-novi-sad-02.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Novi Sad",
+    "en": "Novi Sad"
+   },
+   "w": 1080,
+   "h": 1350,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.5,
+   "v": 1
+  },
+  {
+   "id": "tunis-sus-01",
+   "file": "tunis-sus-01.jpg",
+   "country": "tunis",
+   "place": {
+    "sr": "Sus",
+    "en": "Sousse"
+   },
+   "w": 1333,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1.04
+   },
+   "tilt": -0.6,
    "v": 1,
    "featured": true
   },
@@ -445,39 +581,21 @@
    }
   },
   {
-   "id": "bosna-i-hercegovina-trebinje-01",
-   "file": "bosna-i-hercegovina-trebinje-01.jpg",
-   "country": "bosna-i-hercegovina",
+   "id": "hrvatska-dubrovnik-03",
+   "file": "hrvatska-dubrovnik-03.jpg",
+   "country": "hrvatska",
    "place": {
-    "sr": "Trebinje",
-    "en": "Trebinje"
+    "sr": "Dubrovnik",
+    "en": "Dubrovnik"
    },
-   "w": 1539,
+   "w": 1550,
    "h": 2000,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -0.6,
-   "v": 1
-  },
-  {
-   "id": "crna-gora-herceg-novi-01",
-   "file": "crna-gora-herceg-novi-01.jpg",
-   "country": "crna-gora",
-   "place": {
-    "sr": "Herceg Novi",
-    "en": "Herceg Novi"
-   },
-   "w": 1530,
-   "h": 1962,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.4,
+   "tilt": 0.4,
    "v": 1,
    "featured": true
   },
@@ -501,52 +619,14 @@
    "featured": true
   },
   {
-   "id": "slovenija-bledsko-jezero-01",
-   "file": "slovenija-bledsko-jezero-01.jpg",
-   "country": "slovenija",
+   "id": "srbija-beograd-05",
+   "file": "srbija-beograd-05.jpg",
+   "country": "srbija",
    "place": {
-    "sr": "Bledsko jezero",
-    "en": "Lake Bled"
+    "sr": "Beograd",
+    "en": "Belgrade"
    },
-   "w": 1080,
-   "h": 1279,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.1,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "madjarska-budimpesta-01",
-   "file": "madjarska-budimpesta-01.jpg",
-   "country": "madjarska",
-   "place": {
-    "sr": "Budimpešta",
-    "en": "Budapest"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.7,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "rumunija-nera-01",
-   "file": "rumunija-nera-01.jpg",
-   "country": "rumunija",
-   "place": {
-    "sr": "Nera",
-    "en": "Nera Gorge"
-   },
-   "w": 1126,
+   "w": 1549,
    "h": 2000,
    "crop": {
     "x": 50,
@@ -555,43 +635,101 @@
    },
    "tilt": -1.4,
    "v": 1,
-   "featured": true
+   "featured": true,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
   },
   {
-   "id": "grcka-atina-01",
-   "file": "grcka-atina-01.jpg",
-   "country": "grcka",
+   "id": "srbija-zagajicka-brda-03",
+   "file": "srbija-zagajicka-brda-03.jpg",
+   "country": "srbija",
    "place": {
-    "sr": "Atina",
-    "en": "Athens"
+    "sr": "Zagajička brda",
+    "en": "Zagajica Hills"
    },
-   "w": 1080,
-   "h": 712,
+   "w": 2000,
+   "h": 1215,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -0.4,
+   "tilt": -1,
    "v": 1,
    "featured": true
   },
   {
-   "id": "tunis-mahdija-02",
-   "file": "tunis-mahdija-02.jpg",
+   "id": "tunis-port-el-kantaui-01",
+   "file": "tunis-port-el-kantaui-01.jpg",
    "country": "tunis",
    "place": {
-    "sr": "Mahdija",
-    "en": "Mahdia"
+    "sr": "Port El Kantaui",
+    "en": "Port El Kantaoui"
    },
-   "w": 1500,
+   "w": 1080,
+   "h": 679,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.2,
+   "v": 1
+  },
+  {
+   "id": "hrvatska-dubrovnik-04",
+   "file": "hrvatska-dubrovnik-04.jpg",
+   "country": "hrvatska",
+   "place": {
+    "sr": "Dubrovnik",
+    "en": "Dubrovnik"
+   },
+   "w": 1126,
    "h": 2000,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": 0.5,
+   "tilt": 1.4,
+   "v": 1
+  },
+  {
+   "id": "tunis-mahdija-03",
+   "file": "tunis-mahdija-03.jpg",
+   "country": "tunis",
+   "place": {
+    "sr": "Mahdija",
+    "en": "Mahdia"
+   },
+   "w": 1600,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.8,
+   "v": 1
+  },
+  {
+   "id": "grcka-atina-02",
+   "file": "grcka-atina-02.jpg",
+   "country": "grcka",
+   "place": {
+    "sr": "Atina",
+    "en": "Athens"
+   },
+   "w": 1080,
+   "h": 1074,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.4,
    "v": 1
   },
   {
@@ -614,76 +752,41 @@
    "featured": true
   },
   {
-   "id": "bosna-i-hercegovina-trebinje-02",
-   "file": "bosna-i-hercegovina-trebinje-02.jpg",
-   "country": "bosna-i-hercegovina",
+   "id": "madjarska-budimpesta-06",
+   "file": "madjarska-budimpesta-06.jpg",
+   "country": "madjarska",
    "place": {
-    "sr": "Trebinje",
-    "en": "Trebinje"
+    "sr": "Budimpešta",
+    "en": "Budapest"
    },
-   "w": 1515,
-   "h": 2000,
+   "w": 2000,
+   "h": 1333,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -1.1,
+   "tilt": -1,
    "v": 1
   },
   {
-   "id": "crna-gora-plavsko-jezero-01",
-   "file": "crna-gora-plavsko-jezero-01.jpg",
-   "country": "crna-gora",
+   "id": "madjarska-budimpesta-01",
+   "file": "madjarska-budimpesta-01.jpg",
+   "country": "madjarska",
    "place": {
-    "sr": "Plavsko jezero",
-    "en": "Lake Plav"
+    "sr": "Budimpešta",
+    "en": "Budapest"
    },
-   "w": 1080,
-   "h": 1350,
+   "w": 2000,
+   "h": 1333,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": 0.1,
-   "v": 1
-  },
-  {
-   "id": "hrvatska-dubrovnik-04",
-   "file": "hrvatska-dubrovnik-04.jpg",
-   "country": "hrvatska",
-   "place": {
-    "sr": "Dubrovnik",
-    "en": "Dubrovnik"
-   },
-   "w": 1126,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1.4,
-   "v": 1
-  },
-  {
-   "id": "slovenija-bledsko-jezero-02",
-   "file": "slovenija-bledsko-jezero-02.jpg",
-   "country": "slovenija",
-   "place": {
-    "sr": "Bledsko jezero",
-    "en": "Lake Bled"
-   },
-   "w": 1080,
-   "h": 788,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0,
-   "v": 1
+   "tilt": -0.7,
+   "v": 1,
+   "featured": true
   },
   {
    "id": "madjarska-budimpesta-03",
@@ -705,6 +808,304 @@
    "featured": true
   },
   {
+   "id": "madjarska-budimpesta-02",
+   "file": "madjarska-budimpesta-02.jpg",
+   "country": "madjarska",
+   "place": {
+    "sr": "Budimpešta",
+    "en": "Budapest"
+   },
+   "w": 2000,
+   "h": 1333,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.1,
+   "v": 1,
+   "featured": false
+  },
+  {
+   "id": "madjarska-budimpesta-04",
+   "file": "madjarska-budimpesta-04.jpg",
+   "country": "madjarska",
+   "place": {
+    "sr": "Budimpešta",
+    "en": "Budapest"
+   },
+   "w": 2000,
+   "h": 1333,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.6,
+   "v": 1
+  },
+  {
+   "id": "madjarska-budimpesta-05",
+   "file": "madjarska-budimpesta-05.jpg",
+   "country": "madjarska",
+   "place": {
+    "sr": "Budimpešta",
+    "en": "Budapest"
+   },
+   "w": 2000,
+   "h": 1333,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1,
+   "v": 1
+  },
+  {
+   "id": "srbija-beograd-25",
+   "file": "srbija-beograd-25.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 960,
+   "h": 640,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.2,
+   "v": 1,
+   "featured": true,
+   "area": {
+    "sr": "Zemun",
+    "en": "Zemun"
+   }
+  },
+  {
+   "id": "grcka-meteori-01",
+   "file": "grcka-meteori-01.jpg",
+   "country": "grcka",
+   "place": {
+    "sr": "Meteori",
+    "en": "Meteora"
+   },
+   "w": 1080,
+   "h": 701,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.5,
+   "v": 1
+  },
+  {
+   "id": "crna-gora-plavsko-jezero-01",
+   "file": "crna-gora-plavsko-jezero-01.jpg",
+   "country": "crna-gora",
+   "place": {
+    "sr": "Plavsko jezero",
+    "en": "Lake Plav"
+   },
+   "w": 1080,
+   "h": 1350,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.1,
+   "v": 1
+  },
+  {
+   "id": "slovenija-bledsko-jezero-02",
+   "file": "slovenija-bledsko-jezero-02.jpg",
+   "country": "slovenija",
+   "place": {
+    "sr": "Bledsko jezero",
+    "en": "Lake Bled"
+   },
+   "w": 1080,
+   "h": 788,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0,
+   "v": 1
+  },
+  {
+   "id": "grcka-atina-03",
+   "file": "grcka-atina-03.jpg",
+   "country": "grcka",
+   "place": {
+    "sr": "Atina",
+    "en": "Athens"
+   },
+   "w": 1080,
+   "h": 701,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0,
+   "v": 1
+  },
+  {
+   "id": "bosna-i-hercegovina-trebinje-01",
+   "file": "bosna-i-hercegovina-trebinje-01.jpg",
+   "country": "bosna-i-hercegovina",
+   "place": {
+    "sr": "Trebinje",
+    "en": "Trebinje"
+   },
+   "w": 1539,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.6,
+   "v": 1
+  },
+  {
+   "id": "grcka-meteori-02",
+   "file": "grcka-meteori-02.jpg",
+   "country": "grcka",
+   "place": {
+    "sr": "Meteori",
+    "en": "Meteora"
+   },
+   "w": 1080,
+   "h": 1328,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.2,
+   "v": 1,
+   "featured": false
+  },
+  {
+   "id": "rumunija-nera-03",
+   "file": "rumunija-nera-03.jpg",
+   "country": "rumunija",
+   "place": {
+    "sr": "Nera",
+    "en": "Nera Gorge"
+   },
+   "w": 2000,
+   "h": 1354,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.9,
+   "v": 1
+  },
+  {
+   "id": "crna-gora-herceg-novi-01",
+   "file": "crna-gora-herceg-novi-01.jpg",
+   "country": "crna-gora",
+   "place": {
+    "sr": "Herceg Novi",
+    "en": "Herceg Novi"
+   },
+   "w": 1530,
+   "h": 1962,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.4,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "rumunija-nera-05",
+   "file": "rumunija-nera-05.jpg",
+   "country": "rumunija",
+   "place": {
+    "sr": "Nera",
+    "en": "Nera Gorge"
+   },
+   "w": 2000,
+   "h": 1333,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.2,
+   "v": 1,
+   "featured": false
+  },
+  {
+   "id": "srbija-vrsac-05",
+   "file": "srbija-vrsac-05.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Vršac",
+    "en": "Vršac"
+   },
+   "w": 2000,
+   "h": 1125,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.2,
+   "v": 1,
+   "featured": true
+  },
+  {
+   "id": "tunis-mahdija-02",
+   "file": "tunis-mahdija-02.jpg",
+   "country": "tunis",
+   "place": {
+    "sr": "Mahdija",
+    "en": "Mahdia"
+   },
+   "w": 1500,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.5,
+   "v": 1
+  },
+  {
+   "id": "bosna-i-hercegovina-trebinje-02",
+   "file": "bosna-i-hercegovina-trebinje-02.jpg",
+   "country": "bosna-i-hercegovina",
+   "place": {
+    "sr": "Trebinje",
+    "en": "Trebinje"
+   },
+   "w": 1515,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.1,
+   "v": 1
+  },
+  {
    "id": "rumunija-nera-02",
    "file": "rumunija-nera-02.jpg",
    "country": "rumunija",
@@ -721,80 +1122,6 @@
    },
    "tilt": -1.4,
    "v": 1
-  },
-  {
-   "id": "grcka-atina-02",
-   "file": "grcka-atina-02.jpg",
-   "country": "grcka",
-   "place": {
-    "sr": "Atina",
-    "en": "Athens"
-   },
-   "w": 1080,
-   "h": 1074,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.4,
-   "v": 1
-  },
-  {
-   "id": "tunis-mahdija-03",
-   "file": "tunis-mahdija-03.jpg",
-   "country": "tunis",
-   "place": {
-    "sr": "Mahdija",
-    "en": "Mahdia"
-   },
-   "w": 1600,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.8,
-   "v": 1
-  },
-  {
-   "id": "srbija-krupajsko-vrelo-02",
-   "file": "srbija-krupajsko-vrelo-02.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Krupajsko vrelo",
-    "en": "Krupaja Spring"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.5,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "srbija-zagajicka-brda-03",
-   "file": "srbija-zagajicka-brda-03.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Zagajička brda",
-    "en": "Zagajica Hills"
-   },
-   "w": 2000,
-   "h": 1215,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1,
-   "v": 1,
-   "featured": true
   },
   {
    "id": "bosna-i-hercegovina-trebinje-03",
@@ -833,78 +1160,6 @@
    "v": 1
   },
   {
-   "id": "madjarska-budimpesta-04",
-   "file": "madjarska-budimpesta-04.jpg",
-   "country": "madjarska",
-   "place": {
-    "sr": "Budimpešta",
-    "en": "Budapest"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.6,
-   "v": 1
-  },
-  {
-   "id": "rumunija-nera-03",
-   "file": "rumunija-nera-03.jpg",
-   "country": "rumunija",
-   "place": {
-    "sr": "Nera",
-    "en": "Nera Gorge"
-   },
-   "w": 2000,
-   "h": 1354,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.9,
-   "v": 1
-  },
-  {
-   "id": "grcka-atina-03",
-   "file": "grcka-atina-03.jpg",
-   "country": "grcka",
-   "place": {
-    "sr": "Atina",
-    "en": "Athens"
-   },
-   "w": 1080,
-   "h": 701,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0,
-   "v": 1
-  },
-  {
-   "id": "tunis-port-el-kantaui-01",
-   "file": "tunis-port-el-kantaui-01.jpg",
-   "country": "tunis",
-   "place": {
-    "sr": "Port El Kantaui",
-    "en": "Port El Kantaoui"
-   },
-   "w": 1080,
-   "h": 679,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.2,
-   "v": 1
-  },
-  {
    "id": "srbija-tara-08",
    "file": "srbija-tara-08.jpg",
    "country": "srbija",
@@ -923,29 +1178,6 @@
    "v": 1
   },
   {
-   "id": "srbija-beograd-02",
-   "file": "srbija-beograd-02.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 2000,
-   "h": 1124,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1.4,
-   "v": 1,
-   "featured": true,
-   "area": {
-    "sr": "Stari grad",
-    "en": "Stari Grad"
-   }
-  },
-  {
    "id": "hrvatska-dubrovnik-02",
    "file": "hrvatska-dubrovnik-02.jpg",
    "country": "hrvatska",
@@ -961,24 +1193,6 @@
     "zoom": 1.33
    },
    "tilt": -0.9,
-   "v": 1
-  },
-  {
-   "id": "madjarska-budimpesta-05",
-   "file": "madjarska-budimpesta-05.jpg",
-   "country": "madjarska",
-   "place": {
-    "sr": "Budimpešta",
-    "en": "Budapest"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1,
    "v": 1
   },
   {
@@ -1000,24 +1214,6 @@
    "v": 1
   },
   {
-   "id": "grcka-meteori-01",
-   "file": "grcka-meteori-01.jpg",
-   "country": "grcka",
-   "place": {
-    "sr": "Meteori",
-    "en": "Meteora"
-   },
-   "w": 1080,
-   "h": 701,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.5,
-   "v": 1
-  },
-  {
    "id": "tunis-port-el-kantaui-02",
    "file": "tunis-port-el-kantaui-02.jpg",
    "country": "tunis",
@@ -1034,29 +1230,6 @@
    },
    "tilt": 1.2,
    "v": 1
-  },
-  {
-   "id": "srbija-beograd-05",
-   "file": "srbija-beograd-05.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1549,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.4,
-   "v": 1,
-   "featured": true,
-   "area": {
-    "sr": "Zemun",
-    "en": "Zemun"
-   }
   },
   {
    "id": "srbija-beograd-51",
@@ -1079,43 +1252,6 @@
     "sr": "Savski venac",
     "en": "Savski Venac"
    }
-  },
-  {
-   "id": "hrvatska-dubrovnik-03",
-   "file": "hrvatska-dubrovnik-03.jpg",
-   "country": "hrvatska",
-   "place": {
-    "sr": "Dubrovnik",
-    "en": "Dubrovnik"
-   },
-   "w": 1550,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.4,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "madjarska-budimpesta-06",
-   "file": "madjarska-budimpesta-06.jpg",
-   "country": "madjarska",
-   "place": {
-    "sr": "Budimpešta",
-    "en": "Budapest"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1,
-   "v": 1
   },
   {
    "id": "rumunija-nera-06",
@@ -1152,62 +1288,6 @@
    },
    "tilt": -1.4,
    "v": 1
-  },
-  {
-   "id": "tunis-sus-01",
-   "file": "tunis-sus-01.jpg",
-   "country": "tunis",
-   "place": {
-    "sr": "Sus",
-    "en": "Sousse"
-   },
-   "w": 1333,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1.04
-   },
-   "tilt": -0.6,
-   "v": 1,
-   "featured": true
-  },
-  {
-   "id": "srbija-novi-sad-02",
-   "file": "srbija-novi-sad-02.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Novi Sad",
-    "en": "Novi Sad"
-   },
-   "w": 1080,
-   "h": 1350,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.5,
-   "v": 1
-  },
-  {
-   "id": "srbija-kopaonik-05",
-   "file": "srbija-kopaonik-05.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Kopaonik",
-    "en": "Kopaonik"
-   },
-   "w": 1132,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.1,
-   "v": 1,
-   "featured": true
   },
   {
    "id": "hrvatska-dubrovnik-07",
@@ -1280,25 +1360,6 @@
    },
    "tilt": -1.3,
    "v": 1
-  },
-  {
-   "id": "tunis-sus-02",
-   "file": "tunis-sus-02.jpg",
-   "country": "tunis",
-   "place": {
-    "sr": "Sus",
-    "en": "Sousse"
-   },
-   "w": 757,
-   "h": 1345,
-   "crop": {
-    "x": 50,
-    "y": 21.3,
-    "zoom": 1.23
-   },
-   "tilt": -0.4,
-   "v": 1,
-   "featured": true
   },
   {
    "id": "srbija-zrenjanin-03",
@@ -1411,25 +1472,6 @@
    "v": 1
   },
   {
-   "id": "srbija-vrsac-05",
-   "file": "srbija-vrsac-05.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Vršac",
-    "en": "Vršac"
-   },
-   "w": 2000,
-   "h": 1125,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.2,
-   "v": 1,
-   "featured": true
-  },
-  {
    "id": "srbija-topola-01",
    "file": "srbija-topola-01.jpg",
    "country": "srbija",
@@ -1521,29 +1563,6 @@
    "v": 1
   },
   {
-   "id": "srbija-beograd-25",
-   "file": "srbija-beograd-25.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 960,
-   "h": 640,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.2,
-   "v": 1,
-   "featured": true,
-   "area": {
-    "sr": "Zemun",
-    "en": "Zemun"
-   }
-  },
-  {
    "id": "srbija-beograd-38",
    "file": "srbija-beograd-38.jpg",
    "country": "srbija",
@@ -1564,25 +1583,6 @@
     "sr": "Kalemegdan",
     "en": "Kalemegdan"
    }
-  },
-  {
-   "id": "madjarska-budimpesta-10",
-   "file": "madjarska-budimpesta-10.jpg",
-   "country": "madjarska",
-   "place": {
-    "sr": "Budimpešta",
-    "en": "Budapest"
-   },
-   "w": 1300,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.2,
-   "v": 1,
-   "featured": true
   },
   {
    "id": "rumunija-nera-10",
