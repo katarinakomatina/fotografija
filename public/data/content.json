@@ -4040,6 +4040,28 @@
    }
   },
   {
+   "id": "srbija-beograd-70",
+   "file": "srbija-beograd-70.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 2000,
+   "h": 1338,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.8,
+   "v": 1,
+   "area": {
+    "sr": "Stari grad",
+    "en": "Stari Grad"
+   }
+  },
+  {
    "id": "srbija-beograd-39",
    "file": "srbija-beograd-39.jpg",
    "country": "srbija",
@@ -4062,46 +4084,6 @@
    }
   },
   {
-   "id": "srbija-beograd-49",
-   "file": "srbija-beograd-49.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 2000,
-   "h": 1381,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.6,
-   "v": 1,
-   "area": {
-    "sr": "Zvezdara",
-    "en": "Zvezdara"
-   }
-  },
-  {
-   "id": "srbija-beograd-60",
-   "file": "srbija-beograd-60.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.2,
-   "v": 1
-  },
-  {
    "id": "srbija-beograd-61",
    "file": "srbija-beograd-61.jpg",
    "country": "srbija",
@@ -4117,205 +4099,11 @@
     "zoom": 1
    },
    "tilt": 0.6,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-62",
-   "file": "srbija-beograd-62.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.8,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-63",
-   "file": "srbija-beograd-63.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.1,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-64",
-   "file": "srbija-beograd-64.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.7,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-65",
-   "file": "srbija-beograd-65.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1125,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1.5,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-66",
-   "file": "srbija-beograd-66.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1333,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -1.2,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-67",
-   "file": "srbija-beograd-67.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1333,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.4,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-68",
-   "file": "srbija-beograd-68.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.2,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-69",
-   "file": "srbija-beograd-69.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 0.5,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-70",
-   "file": "srbija-beograd-70.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 2000,
-   "h": 1338,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": -0.8,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-71",
-   "file": "srbija-beograd-71.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1.5,
-   "v": 1
-  },
-  {
-   "id": "srbija-beograd-72",
-   "file": "srbija-beograd-72.jpg",
-   "country": "srbija",
-   "place": {
-    "sr": "Beograd",
-    "en": "Belgrade"
-   },
-   "w": 1333,
-   "h": 2000,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1.5,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Zvezdara",
+    "en": "Zvezdara"
+   }
   },
   {
    "id": "srbija-beograd-73",
@@ -4333,7 +4121,209 @@
     "zoom": 1
    },
    "tilt": -0.7,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
+  },
+  {
+   "id": "srbija-beograd-62",
+   "file": "srbija-beograd-62.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.8,
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
+  },
+  {
+   "id": "srbija-beograd-63",
+   "file": "srbija-beograd-63.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.1,
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
+  },
+  {
+   "id": "srbija-beograd-64",
+   "file": "srbija-beograd-64.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.7,
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
+  },
+  {
+   "id": "srbija-beograd-65",
+   "file": "srbija-beograd-65.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 1125,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.5,
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
+  },
+  {
+   "id": "srbija-beograd-66",
+   "file": "srbija-beograd-66.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 1333,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1.2,
+   "v": 1,
+   "area": {
+    "sr": "Zvezdara",
+    "en": "Zvezdara"
+   }
+  },
+  {
+   "id": "srbija-beograd-67",
+   "file": "srbija-beograd-67.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 1333,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -0.4,
+   "v": 1,
+   "area": {
+    "sr": "Zvezdara",
+    "en": "Zvezdara"
+   }
+  },
+  {
+   "id": "srbija-beograd-69",
+   "file": "srbija-beograd-69.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 2000,
+   "h": 1333,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 0.5,
+   "v": 1,
+   "area": {
+    "sr": "Zvezdara",
+    "en": "Zvezdara"
+   }
+  },
+  {
+   "id": "srbija-beograd-71",
+   "file": "srbija-beograd-71.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 2000,
+   "h": 1333,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.5,
+   "v": 1,
+   "area": {
+    "sr": "Stari grad",
+    "en": "Stari Grad"
+   }
+  },
+  {
+   "id": "srbija-beograd-72",
+   "file": "srbija-beograd-72.jpg",
+   "country": "srbija",
+   "place": {
+    "sr": "Beograd",
+    "en": "Belgrade"
+   },
+   "w": 1333,
+   "h": 2000,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.5,
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
   },
   {
    "id": "srbija-beograd-74",
@@ -4351,7 +4341,11 @@
     "zoom": 1
    },
    "tilt": -0.9,
-   "v": 1
+   "v": 1,
+   "area": {
+    "sr": "Savski venac",
+    "en": "Savski Venac"
+   }
   }
  ]
 }
