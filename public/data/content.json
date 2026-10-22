@@ -232,6 +232,24 @@
  ],
  "photos": [
   {
+   "id": "madjarska-budimpesta-11",
+   "file": "madjarska-budimpesta-11.jpg",
+   "country": "madjarska",
+   "place": {
+    "sr": "Budimpešta",
+    "en": "Budapest"
+   },
+   "w": 2000,
+   "h": 1274,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": 1.4,
+   "v": 1
+  },
+  {
    "id": "srbija-zrenjanin-12",
    "file": "srbija-zrenjanin-12.jpg",
    "country": "srbija",
@@ -752,22 +770,23 @@
    "featured": true
   },
   {
-   "id": "madjarska-budimpesta-06",
-   "file": "madjarska-budimpesta-06.jpg",
+   "id": "madjarska-budimpesta-03",
+   "file": "madjarska-budimpesta-03.jpg",
    "country": "madjarska",
    "place": {
     "sr": "Budimpešta",
     "en": "Budapest"
    },
    "w": 2000,
-   "h": 1333,
+   "h": 1371,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -1,
-   "v": 1
+   "tilt": -1.2,
+   "v": 1,
+   "featured": true
   },
   {
    "id": "madjarska-budimpesta-01",
@@ -789,23 +808,40 @@
    "featured": true
   },
   {
-   "id": "madjarska-budimpesta-03",
-   "file": "madjarska-budimpesta-03.jpg",
+   "id": "madjarska-budimpesta-05",
+   "file": "madjarska-budimpesta-05.jpg",
    "country": "madjarska",
    "place": {
     "sr": "Budimpešta",
     "en": "Budapest"
    },
    "w": 2000,
-   "h": 1371,
+   "h": 1333,
    "crop": {
     "x": 50,
     "y": 50,
     "zoom": 1
    },
-   "tilt": -1.2,
-   "v": 1,
-   "featured": true
+   "tilt": 1,
+   "v": 1
+  },
+  {
+   "id": "madjarska-budimpesta-06",
+   "file": "madjarska-budimpesta-06.jpg",
+   "country": "madjarska",
+   "place": {
+    "sr": "Budimpešta",
+    "en": "Budapest"
+   },
+   "w": 2000,
+   "h": 1333,
+   "crop": {
+    "x": 50,
+    "y": 50,
+    "zoom": 1
+   },
+   "tilt": -1,
+   "v": 1
   },
   {
    "id": "madjarska-budimpesta-02",
@@ -842,24 +878,6 @@
     "zoom": 1
    },
    "tilt": -0.6,
-   "v": 1
-  },
-  {
-   "id": "madjarska-budimpesta-05",
-   "file": "madjarska-budimpesta-05.jpg",
-   "country": "madjarska",
-   "place": {
-    "sr": "Budimpešta",
-    "en": "Budapest"
-   },
-   "w": 2000,
-   "h": 1333,
-   "crop": {
-    "x": 50,
-    "y": 50,
-    "zoom": 1
-   },
-   "tilt": 1,
    "v": 1
   },
   {
