@@ -184,16 +184,7 @@
             <span class="file">{{ p.file }} · {{ p.w }}×{{ p.h }}</span>
           </div>
 
-          @if (cropping()) {
-            <app-cropper
-              [src]="'/api/original/' + p.file + '?v=' + (p.v || 1)"
-              [initial]="p.cut"
-              [busy]="busy()"
-              (apply)="applyCut(p, $event)"
-              (cancel)="cropping.set(false)"
-            />
-            <p class="hint">Prevuci okvir ili vuci kružiće na uglovima. Gore biraš oblik (npr. 4:5 ili 9:16). Original se čuva, pa uvek možeš da vratiš ceo kadar.</p>
-          } @else {
+          @if (!cropping()) {
           <div class="pv-wrap">
             <div
               class="pv"
@@ -412,3 +403,14 @@
     }
   }
 </div>
+
+<!-- isecanje preko celog ekrana (van ostalih delova, da bude iznad svega) -->
+@if (cropping() && selected(); as p) {
+  <app-cropper
+    [src]="'/api/original/' + p.file + '?v=' + (p.v || 1)"
+    [initial]="p.cut"
+    [busy]="busy()"
+    (apply)="applyCut(p, $event)"
+    (cancel)="cropping.set(false)"
+  />
+}

@@ -8,106 +8,113 @@ export interface Cut {
   h: number;
 }
 
-type Handle = 'move' | 'nw' | 'ne' | 'sw' | 'se' | 'n' | 's' | 'e' | 'w';
-
-const PRESETS: { label: string; r: number | 'free' | 'orig' }[] = [
-  { label: 'Slobodno', r: 'free' },
-  { label: 'Original', r: 'orig' },
-  { label: '1:1', r: 1 },
-  { label: '4:5', r: 4 / 5 },
-  { label: '3:2', r: 3 / 2 },
-  { label: '2:3', r: 2 / 3 },
-  { label: '16:9', r: 16 / 9 },
-  { label: '9:16', r: 9 / 16 },
-];
+type Handle = 'new' | 'move' | 'nw' | 'ne' | 'sw' | 'se' | 'n' | 's' | 'e' | 'w';
 
 /**
- * Ručno isecanje: prevuci okvir, vuci uglove/ivice da promeniš veličinu.
- * Ne menja ništa dok ne klikneš "Primeni".
+ * Isecanje preko celog ekrana:
+ * prevuci mišem preko slike i označi deo koji želiš da ostane.
+ * Označeno možeš da pomeraš, a kružićima na uglovima da ga povećaš ili smanjiš.
  */
 @Component({
   selector: 'app-cropper',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '(document:keydown.escape)': 'cancel.emit()' },
   template: `
-    <div class="presets">
-      @for (p of presets; track p.label) {
-        <button type="button" [class.on]="preset() === p.label" (click)="choose(p)">{{ p.label }}</button>
-      }
+    <div class="top">
+      <b>Isecanje</b>
+      <span>{{ cut() ? 'Prevuci okvir da ga pomeriš, vuci kružiće da promeniš veličinu.' : 'Prevuci mišem preko slike i označi deo koji želiš da ostane.' }}</span>
     </div>
 
-    <div class="area" #area>
-      <img [src]="src()" alt="" draggable="false" (load)="loaded($event)" />
-      @if (nat()) {
-        <div class="shade" [style.clip-path]="hole()"></div>
-        <div
-          class="box"
-          [style.left.%]="cut().x * 100"
-          [style.top.%]="cut().y * 100"
-          [style.width.%]="cut().w * 100"
-          [style.height.%]="cut().h * 100"
-          (pointerdown)="down($event, 'move')"
-        >
-          <i class="g g1"></i><i class="g g2"></i><i class="g g3"></i><i class="g g4"></i>
-          @for (h of handles; track h) {
-            <span class="h {{ h }}" (pointerdown)="down($event, h)"></span>
-          }
-        </div>
-      }
+    <div class="stage">
+      <div class="area" #area (pointerdown)="down($event, 'new')">
+        <img [src]="src()" alt="" draggable="false" (load)="onLoad()" />
+        @if (cut(); as c) {
+          <div class="shade" [style.clip-path]="hole()"></div>
+          <div
+            class="box"
+            [style.left.%]="c.x * 100"
+            [style.top.%]="c.y * 100"
+            [style.width.%]="c.w * 100"
+            [style.height.%]="c.h * 100"
+            (pointerdown)="down($event, 'move')"
+          >
+            <i class="g g1"></i><i class="g g2"></i><i class="g g3"></i><i class="g g4"></i>
+            @for (h of handles; track h) {
+              <span class="h {{ h }}" (pointerdown)="down($event, h)"></span>
+            }
+          </div>
+        }
+      </div>
     </div>
 
-    <div class="info">{{ px() }}</div>
-    <div class="row">
-      <button type="button" class="primary" (click)="apply.emit(cut())" [disabled]="busy()">✂ Primeni isecanje</button>
-      <button type="button" (click)="reset()">Ceo kadar</button>
+    <div class="bar">
+      <button type="button" class="primary" (click)="done()" [disabled]="!cut() || busy()">✂ Iseci</button>
+      @if (cut()) {
+        <button type="button" (click)="cut.set(null)">Obriši označeno</button>
+      }
       <button type="button" (click)="cancel.emit()">Otkaži</button>
     </div>
   `,
   styles: `
     :host {
-      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(20, 15, 10, 0.94);
+      color: #fbf7ee;
     }
-    .presets,
-    .row {
+    .top {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin: 8px 0;
+      gap: 12px;
+      align-items: baseline;
+      font-size: 15px;
     }
-    .presets button {
-      padding: 5px 9px;
-      font-size: 12px;
+    .top b {
+      font-size: 18px;
     }
-    .presets button.on {
-      background: #2d241c;
-      color: #fbf7ee;
+    .stage {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      display: grid;
+      place-items: center;
     }
     .area {
       position: relative;
       line-height: 0;
       user-select: none;
       touch-action: none;
+      cursor: crosshair;
     }
     .area img {
-      width: 100%;
+      display: block;
+      max-width: calc(100vw - 32px);
+      max-height: calc(100vh - 140px);
+      width: auto;
       height: auto;
-      max-height: 62vh;
-      object-fit: contain;
+      pointer-events: none;
     }
     .shade {
       position: absolute;
       inset: 0;
-      background: rgba(20, 15, 10, 0.6);
+      background: rgba(0, 0, 0, 0.62);
       pointer-events: none;
     }
     .box {
       position: absolute;
       outline: 2px solid #fff;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
       cursor: move;
     }
     .g {
       position: absolute;
-      background: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.4);
       pointer-events: none;
     }
     .g1,
@@ -136,9 +143,9 @@ const PRESETS: { label: string; r: number | 'free' | 'orig' }[] = [
     }
     .h {
       position: absolute;
-      width: 18px;
-      height: 18px;
-      margin: -9px 0 0 -9px;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
       background: #fff;
       border: 2px solid #2d241c;
       border-radius: 50%;
@@ -167,10 +174,10 @@ const PRESETS: { label: string; r: number | 'free' | 'orig' }[] = [
     .s,
     .e,
     .w {
-      width: 14px;
-      height: 14px;
-      margin: -7px 0 0 -7px;
-      border-radius: 3px;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      border-radius: 4px;
     }
     .n {
       left: 50%;
@@ -192,14 +199,27 @@ const PRESETS: { label: string; r: number | 'free' | 'orig' }[] = [
       top: 50%;
       cursor: ew-resize;
     }
-    .info {
-      margin-top: 6px;
-      font-size: 12px;
-      opacity: 0.7;
+    .bar {
+      display: flex;
+      gap: 10px;
     }
-    .primary {
-      background: #2d241c;
+    .bar button {
+      padding: 10px 18px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: 1px solid #fbf7ee;
+      background: transparent;
       color: #fbf7ee;
+      cursor: pointer;
+    }
+    .bar .primary {
+      background: #fbf7ee;
+      color: #2d241c;
+      font-weight: 600;
+    }
+    .bar button:disabled {
+      opacity: 0.4;
+      cursor: default;
     }
   `,
 })
@@ -210,73 +230,48 @@ export class Cropper {
   readonly apply = output<Cut>();
   readonly cancel = output<void>();
 
-  protected readonly presets = PRESETS;
   protected readonly handles: Handle[] = ['nw', 'ne', 'sw', 'se', 'n', 's', 'e', 'w'];
   private readonly area = viewChild.required<ElementRef<HTMLElement>>('area');
 
-  readonly nat = signal<{ w: number; h: number } | null>(null);
-  readonly cut = signal<Cut>({ x: 0, y: 0, w: 1, h: 1 });
-  readonly preset = signal('Slobodno');
-  /** odnos strana u pikselima (širina/visina), ili null = slobodno */
-  private ratio: number | null = null;
+  readonly ready = signal(false);
+  /** označeni deo (null = još ništa nije označeno) */
+  readonly cut = signal<Cut | null>(null);
 
   readonly hole = computed(() => {
     const c = this.cut();
+    if (!c) return 'none';
     const [l, t, r, b] = [c.x, c.y, c.x + c.w, c.y + c.h].map((v) => (v * 100).toFixed(2) + '%');
-    // ceo pravougaonik minus rupa (isečak) — "evenodd" preko polygon-a
     return `polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, ${l} ${t}, ${r} ${t}, ${r} ${b}, ${l} ${b}, ${l} ${t})`;
   });
 
-  readonly px = computed(() => {
-    const n = this.nat();
-    if (!n) return 'Učitavam…';
-    const c = this.cut();
-    return `Isečak: ${Math.round(c.w * n.w)} × ${Math.round(c.h * n.h)} px (od ${n.w} × ${n.h})`;
-  });
-
-  loaded(e: Event): void {
-    const img = e.target as HTMLImageElement;
-    this.nat.set({ w: img.naturalWidth, h: img.naturalHeight });
+  onLoad(): void {
+    this.ready.set(true);
+    // ako je slika već bila isečena, pokaži prethodni okvir
     const i = this.initial();
-    this.cut.set(i ? { ...i } : { x: 0, y: 0, w: 1, h: 1 });
+    if (i && !(i.w > 0.999 && i.h > 0.999)) this.cut.set({ ...i });
   }
 
-  reset(): void {
-    this.preset.set('Slobodno');
-    this.ratio = null;
-    this.cut.set({ x: 0, y: 0, w: 1, h: 1 });
-  }
-
-  choose(p: (typeof PRESETS)[number]): void {
-    const n = this.nat();
-    if (!n) return;
-    this.preset.set(p.label);
-    this.ratio = p.r === 'free' ? null : p.r === 'orig' ? n.w / n.h : p.r;
-    if (this.ratio === null) return;
-    // najveći okvir tog oblika, centriran oko trenutnog isečka
+  done(): void {
     const c = this.cut();
-    const k = this.ratio * (n.h / n.w); // w/h u delovima slike
-    let w = 1;
-    let h = w / k;
-    if (h > 1) {
-      h = 1;
-      w = k;
-    }
-    const cx = c.x + c.w / 2;
-    const cy = c.y + c.h / 2;
-    this.cut.set({ w, h, x: clamp(cx - w / 2, 0, 1 - w), y: clamp(cy - h / 2, 0, 1 - h) });
+    if (c) this.apply.emit(c);
   }
 
-  // -------- prevlačenje --------
-  private drag: { h: Handle; x: number; y: number; c: Cut; W: number; H: number } | null = null;
+  // -------- miš / prst --------
+  private drag: { h: Handle; x0: number; y0: number; c: Cut | null; r: DOMRect } | null = null;
 
   down(e: PointerEvent, h: Handle): void {
+    if (!this.ready() || e.button > 0) return;
     e.stopPropagation();
     e.preventDefault();
     const r = this.area().nativeElement.getBoundingClientRect();
-    this.drag = { h, x: e.clientX, y: e.clientY, c: { ...this.cut() }, W: r.width, H: r.height };
+    const x0 = clamp((e.clientX - r.left) / r.width, 0, 1);
+    const y0 = clamp((e.clientY - r.top) / r.height, 0, 1);
+    this.drag = { h, x0, y0, c: this.cut() ? { ...this.cut()! } : null, r };
     const move = (ev: PointerEvent) => this.move(ev);
     const up = () => {
+      // samo klik bez prevlačenja → ne ostavljaj sićušan okvir
+      const c = this.cut();
+      if (c && (c.w < 0.02 || c.h < 0.02)) this.cut.set(this.drag?.c ?? null);
       this.drag = null;
       window.removeEventListener('pointermove', move);
       window.removeEventListener('pointerup', up);
@@ -289,19 +284,24 @@ export class Cropper {
 
   private move(e: PointerEvent): void {
     const d = this.drag;
-    const n = this.nat();
-    if (!d || !n) return;
-    const dx = (e.clientX - d.x) / d.W;
-    const dy = (e.clientY - d.y) / d.H;
-    const c = d.c;
-    const MIN = 0.05;
+    if (!d) return;
+    const x = clamp((e.clientX - d.r.left) / d.r.width, 0, 1);
+    const y = clamp((e.clientY - d.r.top) / d.r.height, 0, 1);
 
+    // novi okvir: od mesta gde si pritisla do mesta gde je miš
+    if (d.h === 'new' || !d.c) {
+      this.cut.set({ x: Math.min(d.x0, x), y: Math.min(d.y0, y), w: Math.abs(x - d.x0), h: Math.abs(y - d.y0) });
+      return;
+    }
+
+    const c = d.c;
+    const dx = x - d.x0;
+    const dy = y - d.y0;
     if (d.h === 'move') {
       this.cut.set({ ...c, x: clamp(c.x + dx, 0, 1 - c.w), y: clamp(c.y + dy, 0, 1 - c.h) });
       return;
     }
-
-    // ivice koje se pomeraju
+    const MIN = 0.03;
     let l = c.x;
     let t = c.y;
     let r = c.x + c.w;
@@ -310,35 +310,6 @@ export class Cropper {
     if (d.h.includes('e')) r = clamp(r + dx, l + MIN, 1);
     if (d.h.includes('n')) t = clamp(t + dy, 0, b - MIN);
     if (d.h.includes('s')) b = clamp(b + dy, t + MIN, 1);
-
-    if (this.ratio !== null) {
-      const k = this.ratio * (n.h / n.w);
-      let w = r - l;
-      let h = b - t;
-      // ivica gore/dole → širina prati visinu; inače visina prati širinu
-      if (d.h === 'n' || d.h === 's') w = h * k;
-      else h = w / k;
-      // ne izlazi van slike
-      const maxW = d.h.includes('w') ? c.x + c.w : d.h.includes('e') ? 1 - c.x : 1;
-      const maxH = d.h.includes('n') ? c.y + c.h : d.h.includes('s') ? 1 - c.y : 1;
-      if (w > maxW) {
-        w = maxW;
-        h = w / k;
-      }
-      if (h > maxH) {
-        h = maxH;
-        w = h * k;
-      }
-      // sidro = suprotan ugao/ivica
-      if (d.h.includes('w')) l = c.x + c.w - w;
-      else if (d.h.includes('e')) l = c.x;
-      else l = clamp(c.x + c.w / 2 - w / 2, 0, 1 - w);
-      if (d.h.includes('n')) t = c.y + c.h - h;
-      else if (d.h.includes('s')) t = c.y;
-      else t = clamp(c.y + c.h / 2 - h / 2, 0, 1 - h);
-      r = l + w;
-      b = t + h;
-    }
     this.cut.set({ x: l, y: t, w: r - l, h: b - t });
   }
 }
